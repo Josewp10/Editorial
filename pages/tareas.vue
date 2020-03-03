@@ -48,6 +48,8 @@
               <b-button @click="actualizarTarea()" variant="primary" v-else>Actualizar Tarea</b-button>
             </b-form>
           </b-card>
+
+          <b-button href="/notificaciones" variant="primary">Comentario</b-button>
         </b-col>
         <b-col>
           <b-table striped hover :items="lista_tareas">
@@ -64,4 +66,5 @@
   </div>
 </template>
 
-<script src="C:\Users\hp\Documents\Editorial\Editorial\assets\tareas.js"/>
+
+<script src="../assets/tareas.js"/>
