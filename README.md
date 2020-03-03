@@ -1,6 +1,6 @@
-# gestionpublicacion
+# Editorial
 
-> proyecto del sello editorial modulo gestion publicacion
+> proyecto del sello editorial
 
 ## Build Setup
 

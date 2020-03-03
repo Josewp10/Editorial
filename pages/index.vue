@@ -1,18 +1,20 @@
 <template>
+ 
   <div class="container">
     <div>
 
-      <b-button href="#">Autor</b-button>
-      <b-button href="#">Cómite de Facultad</b-button>
-      <b-button href="#">Sello Editorial</b-button>
-
-      <h1 class="title">Gestión de la Publicación</h1>
-      <h2 class="subtitle">Proyecto Sello Editorial</h2>
-      <h2>ACA SERIA BUENO ESTILIZAR LOS BOTONES Y PARTIR DESDE ACA</h2>
+      <h1 class="title">Editorial</h1>
+      <h2 class="subtitle">Módulo gestión de Publicación</h2>
+    
+      <b-button href="/autor">Autor</b-button>
+      <b-button href="/comite">Cómite de Facultad</b-button>
+      <b-button href="/sello">Sello Editorial</b-button>
+       <b-button href="/acercade">Desarrolladores</b-button>
     
     </div>
   </div>
-</template
+
+</template>
 
 <script>
 import Logo from '~/components/Logo.vue'

@@ -1,8 +1,8 @@
 {
-  "name": "gestionpublicacion",
+  "name": "Editorial",
   "version": "1.0.0",
-  "description": "proyecto del sello editorial modulo gestion publicacion",
-  "author": "alvarezAlejandra-ArroyaveJuanJose-MarulandaJoseDavid",
+  "description": "proyecto del sello editorial",
+  "author": "arroyavealvarezmarulanda",
   "private": true,
   "scripts": {
     "dev": "nuxt",
