@@ -48,8 +48,8 @@
               <b-button @click="actualizarTarea()" variant="primary" v-else>Actualizar Tarea</b-button>
             </b-form>
           </b-card>
-
-          <b-button href="/notificaciones" variant="primary">Comentario</b-button>
+          <br>
+          <b-button href="/notificaciones" variant="primary">Notificar a Autores</b-button>
         </b-col>
         <b-col>
           <b-table striped hover :items="lista_tareas">
