@@ -18,7 +18,7 @@
             label-align-sm="right"
             label-for="tipo"
           >
-            <b-form-select v-model="notificacion.tiponotificacion":options="opciones_notificacion"></b-form-select>
+            <b-form-select v-model="notificacion.tiponotificacion" :options="opciones_notificacion"></b-form-select>
           </b-form-group>
           <b-form-group
             label-cols-sm="3"
