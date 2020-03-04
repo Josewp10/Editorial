@@ -7,55 +7,52 @@
           <b-card title="Gestión de seguimiento">
             <b-card-text>A continuación selecione la tarea revisada y en el estado que se encuentra:</b-card-text>
 
-            <b-form action="javascript:void(0)" @submit="crearTareas()">
+            <b-form action="javascript:void(0)" @submit="crearSeguimiento()">
               <b-form-group label="Código Obra" label-for="id">
                 <b-form-input
                   class="form-control"
                   type="number"
-                  v-model="tarea.id"
+                  v-model="seguimiento.id"
                   placeholder="Ingrese Id de la Obra"
                   id="id"
                 />
               </b-form-group>
 
-              <div>
-                <b-dropdown label="Seleccione la tarea" id="tareas" text="Lista de tareas" class="m-md-2">
-                  <b-dropdown-item>First Action</b-dropdown-item>
-                  <b-dropdown-item>Second Action</b-dropdown-item>
-                  <b-dropdown-item>Third Action</b-dropdown-item>
-                </b-dropdown>
-              </div>
-              <div>
-                <b-dropdown id="estado" text="Estados" class="m-md-2">
-                  <b-dropdown-item>Activo</b-dropdown-item>
-                  <b-dropdown-item> Inactivo</b-dropdown-item>
-                </b-dropdown>
-              </div>
+              <b-form-group>
+                <b-form-select v-model="seguimiento.estado" :options="opciones_estados"></b-form-select>
+              <br/> 
+              </b-form-group>
               
+              <b-form-group>
+              <b-form-select v-model="seguimiento.tareas" :options="opciones_listaTarea"></b-form-select>
+              <br>
+              </b-form-group>
 
-            <b-form-textarea id="Comentario" size="lg" placeholder="Comentario"></b-form-textarea>
-              
-              <br> <br> 
+              <b-form-textarea  v-model="seguimiento.comentario" id="Comentario" size="lg" placeholder="Comentario"></b-form-textarea>
 
-              <b-button type="submit" variant="danger" v-if="!enEdicion">Crear Tarea</b-button>
-              <b-button @click="actualizarTarea()" variant="primary" v-else>Actualizar Tarea</b-button>
+              <br />
+              <br />
+
+              <b-button type="submit" variant="danger" v-if="!enEdicion">Crear Seguimiento</b-button>
+
+              <b-button @click="actualizarSeguimiento()" variant="primary" v-else>Actualizar</b-button>
             </b-form>
           </b-card>
         </b-col>
         <b-col>
-          <b-table striped hover :items="lista_tareas">
+          <b-table striped hover :items="lista_seguimiento">
             <template v-slot:cell(acciones)="row">
               <b-button
                 size="sm"
-                @click="cargarTarea(row)"
+                @click="cargarSeguimiento(row)"
                 class="mr-2"
                 variant="warning"
               >Modificar</b-button>
-              <br />
-              <br />
+              <br>
+              <br>
               <b-button
                 size="sm"
-                @click="eliminarTareas(row)"
+                @click="eliminarSeguimiento(row)"
                 class="mr-2"
                 variant="danger"
               >Eliminar</b-button>
@@ -67,4 +64,4 @@
   </div>
 </template>
 
-<script src="../assets/tareas.js"/>
+<script src="../assets/seguimiento.js"/>
