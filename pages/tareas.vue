@@ -50,6 +50,8 @@
           </b-card>
           <br />
           <b-button href="/notificaciones" variant="primary">Notificar a Autores</b-button>
+          <b-button href="/notificaciones" variant="primary">Cesion de derechos</b-button>
+
         </b-col>
         <b-col>
           <b-table striped hover :items="lista_tareas">
