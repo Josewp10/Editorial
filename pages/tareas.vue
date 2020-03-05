@@ -26,7 +26,7 @@
                 />
               </b-form-group>
 
-              <b-form-group label="Descripción" label-for="descripcion" >
+              <b-form-group label="Descripción" label-for="descripcion">
                 <b-form-input
                   class="form-control"
                   v-model="tarea.descripcion"
@@ -48,16 +48,21 @@
               <b-button @click="actualizarTarea()" variant="primary" v-else>Actualizar Tarea</b-button>
             </b-form>
           </b-card>
-          <br>
+          <br />
           <b-button href="/notificaciones" variant="primary">Notificar a Autores</b-button>
         </b-col>
         <b-col>
           <b-table striped hover :items="lista_tareas">
             <template v-slot:cell(acciones)="row">
               <b-button size="sm" @click="cargarTarea(row)" class="mr-2" variant="warning">Modificar</b-button>
-              <br>
-              <br>
-              <b-button size="sm" @click="eliminarTareas(row)" class="mr-2" variant="danger">Eliminar</b-button>
+              <br />
+              <br />
+              <b-button
+                size="sm"
+                @click="eliminarTareas(row)"
+                class="mr-2"
+                variant="danger"
+              >Eliminar</b-button>
             </template>
           </b-table>
         </b-col>
