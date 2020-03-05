@@ -1,7 +1,7 @@
 export default {
     data() {
       return {
-        file:null,
+
         //Arreglo que contiene la lista de autores
         autores:[{
           id:1,
@@ -15,23 +15,38 @@ export default {
         options: [
           {value: 0, text: "Javier Alvarez"}
         ],
-
-        tarea: {
-          id: "",
-          formato: "",
-          comentario: ""
+        //JSON donde se almacena la información insertada
+        datos: {
+          autor:"",
+          formato: null,
+          comentarios:""
         },
+        //Listado de solicitudes realizadas
+        solicitudes:[{
+          autor:"",
+          formato: null,
+          comentarios:""
+        }]
         };
+
       },
       methods: {
+        //Alimenta el listado de autores
         listarAutores() {
             for (var i = 0; i < this.autores.length; i++) {
               let lista = autores[i];
-               let temporal = {value: lista.id, text: lista.nombre}
+               let temporal = {value: this.lista.id, text: this.lista.nombre}
                this.options.push(temporal);
             }
         },
+        //Almacena los datos recibidos en el listado de solicitudes
         guardar(){
+          this.solicitudes.push(this.datos);
+          this.datos = {
+            autor:"",
+            formato: null,
+            comentarios:""
+          };
 
         }
       }

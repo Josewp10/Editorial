@@ -6,7 +6,7 @@
           <b-button href="/cesion_derechos" variant="primary">Cesión de derechos</b-button>
           <b-button href="/envio_maquetacion" variant="primary">Envio maquetacion</b-button>
           <b-button href="/notificaciones" variant="primary">Notificación de autor</b-button>
-          <b-button href="/notificacion_autor" variant="primary">Distribución</b-button>
+          <b-button href="/distribucion" variant="primary">Distribución</b-button>
     </div>
   </div>
 

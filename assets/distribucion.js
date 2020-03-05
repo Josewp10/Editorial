@@ -2,8 +2,7 @@ export default {
     data() {
       return {
         selected: '',
-        state:'',
-        observaciones:'',
+        //Obras para alimentar el listado de selección
         lista_obras: [
             {
                 id: "0001",
@@ -33,10 +32,23 @@ export default {
                 nombreAutor: "Javier Osorio  ",
                 estado:'revision'
             }
-        ]
+        ],
+        //Opciones para el elemento Select
+        options:[
+          {value:0, text: "Viaje al centro de la tierra"}
+        ],
+      
       }
     },
     methods: {
+      //Alimenta el listado de autores
+      listarAutores() {
+          for (var i = 0; i < this.lista_obras.length; i++) {
+            let lista = lista_obras[i];
+             let temporal = {value: this.lista.id, text: this.lista.nombre}
+             this.options.push(temporal);
+          }
+      },
       guardar(){
 
       }

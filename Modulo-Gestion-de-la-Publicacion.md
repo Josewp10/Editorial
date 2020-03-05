@@ -1,3 +1,13 @@
+# Desarrolladores
+
+Alejandra Álvarez Fernández
+Juan José Arroyave Serna
+José David Marulanda Orozco
+
+
+
+
+
 # Funcionalidades
 
 Nota: Crear un array con publicaciónes de pruebas.
@@ -46,10 +56,10 @@ El comité editorial presenta la propuesta de publicación aprobada, ante el Sel
 2. Solicitud de cesión de derechos a autores `Consultar de autores`
    - Envío de correo con formato adjunto `Enviar formato a autores`
    - Recepción y carga en sistema de formato diligenciado `Cargar un solo formato`
-3. Envío a maquetación en sello editorial
-   - Revisión de auxiliar de obra `[Comentario, visto bueno]`
+3. Envío a maquetación en sello editorial (Obra maquetada enviada al autor)
+   - Revisión de auxiliar de obra `[Comentario, visto bueno]`(Aprovación o desaprovación del autor)
 4. Notificación a autores `Enviar correo`
-   - Con ajustes
+   - Con ajustes 
    - Versión maquetada para revisión
    - Versión final
 5. Distribución `[Comentario, visto bueno]`

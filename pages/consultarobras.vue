@@ -1,25 +1,34 @@
 <template>
   <div>
-    <br />
-    <br />
-
     <b-container class="bv-example-row mb-3">
       <b-row cols="1">
-        <b-col></b-col>
         <b-col>
-          <b-form-file
-            v-model="file"
-            :state="Boolean(file)"
-            placeholder="Consulte obras..."
-            drop-placeholder="Drop file here..."
-          ></b-form-file>
+          <br />
+          <b-img center="" src="@/static/images/ssearch.png" width="180" height="180"></b-img>
+        </b-col>
+        <b-col>
+          <b-input-group class="mt-3">
+            <b-form-input></b-form-input>
+            <b-input-group-append>
+              <b-button variant="info">Buscar</b-button>
+            </b-input-group-append>
+          </b-input-group>
         </b-col>
 
         <b-col>
-          <br>
+          <br />
           <b-table striped hover :items="lista_obras">
             <template v-slot:cell(acciones)="row">
-              <b-button href="/propuestas" size="sm" @click="cargarObra(row)" class="mr-2" variant="primary">Ver</b-button>
+<!-- HEAD-->
+
+              <b-button
+                href="/propuestas"
+                size="sm"
+                @click="cargarObra(row)"
+                class="mr-2"
+                variant="primary"
+              >Ver</b-button>
+
               <br />
               <br />
               <b-button href="/seguimiento" size="sm" class="mr-2" variant="danger">Revisar</b-button>

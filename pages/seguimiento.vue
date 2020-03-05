@@ -5,9 +5,11 @@
       <b-row cols="2">
         <b-col>
           <b-card title="Gestión de seguimiento">
+            <b-img left="3px" src="@/static/images/question.png" width="80" height="80"></b-img>
             <b-card-text>A continuación selecione la tarea revisada y en el estado que se encuentra:</b-card-text>
 
             <b-form action="javascript:void(0)" @submit="crearSeguimiento()">
+              <br>
               <b-form-group label="Código Obra" label-for="id">
                 <b-form-input
                   class="form-control"

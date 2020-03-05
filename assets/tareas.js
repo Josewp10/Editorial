@@ -24,6 +24,7 @@ export default {
       methods: {
          crearTareas() {
           this.lista_tareas.push(this.tarea);
+          localStorage.setItem(this.tarea.id, JSON.stringify(this.tarea));
           this.tarea = {
             id: "",
             nombre: "",
@@ -31,17 +32,21 @@ export default {
             encargado: "",
             acciones: true
           };
+
         },
         eliminarTareas({ item }) {
           let posicion = this.lista_tareas.findIndex(
             tarea => tarea.id == item.id
           );
           this.lista_tareas.splice(posicion, 1);
+          localStorage.removeItem(posicion);
+
         },
         cargarTarea({ item }) {
-          let task = this.lista_tareas.find(
+          /*let task = this.lista_tareas.find(
             tarea => tarea.id == item.id
-          );
+          );*/
+          let task = JSON.parse(localStorage.getItem(item));
           this.enEdicion = true;
           this.tarea = Object.assign({}, task);
         },
@@ -49,7 +54,9 @@ export default {
           let posicion = this.lista_tareas.findIndex(
             tarea => tarea.id == this.tarea.id
           );
-          this.lista_tareas.splice(posicion, 1, this.tarea);
+          //this.lista_tareas.splice(posicion, 1, this.tarea);
+          localStorage.setItem(posicion,this.tarea);
+
           this.tarea = {
              id: "",
             nombre: "",
@@ -57,7 +64,7 @@ export default {
             encargado: "",
             acciones: true
           };
-   
+
         }
       }
     };
