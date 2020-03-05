@@ -49,6 +49,8 @@ export default {
             let task = this.lista_obras.find(
                 obras => obras.id == item.id
             );
+            localStorage.setItem(0,task.nombreAutor);
+            localStorage.setItem(1,task.nombre);
             this.enEdicion = true;
             this.obras = Object.assign({}, task);
         }

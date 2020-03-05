@@ -7,9 +7,7 @@
             <b-card-text>Seleccione el nuevo estado de obra y agregue observaciones</b-card-text>
 
             <b-form action="javascript:void(0)" @submit="">
-              <b-form-group label="Seleccionar obra">
-                <b-form-select v-model="selected" :options="options" ></b-form-select>
-                  </b-form-group>
+                <b-form-group id="obra" label="Obra:" label-for="autor" style=""></b-form-group>
               <b-form-group label="Estados de obra">
                     <b-form-radio v-model="state" name="some-radios" value="Aprobado">Aprobado</b-form-radio>
                     <b-form-radio v-model="state" name="some-radios" value="No Aprobado">No Aprobado</b-form-radio>

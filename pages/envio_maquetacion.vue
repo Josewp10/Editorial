@@ -7,8 +7,7 @@
             <b-card-text>Seleccione el autor, el archivo y agregueun comentario</b-card-text>
 
             <b-form action="javascript:void(0)" @submit="guardar()">
-              <b-form-select v-model="datos.autor" :options="options" ></b-form-select>
-              <b-form-group label="Comentarios" label-for="comentarios">
+            <b-form-group id="autor" label="Archivo:" label-for="autor"></b-form-group>
                 <b-form-input
                   class="form-control"
                   v-model="datos.comentarios"

@@ -1,7 +1,10 @@
 export default {
+    created(){
+
+    },
     data() {
       return {
-
+        autor:"",
         //Arreglo que contiene la lista de autores
         autores:[{
           id:1,
@@ -30,24 +33,31 @@ export default {
         };
 
       },
-      methods: {
-        //Alimenta el listado de autores
-        listarAutores() {
-            for (var i = 0; i < this.autores.length; i++) {
-              let lista = autores[i];
-               let temporal = {value: this.lista.id, text: this.lista.nombre}
-               this.options.push(temporal);
-            }
+      mounted(){this.localS()
+      this.nombrar()},
+
+      methods:{
+        nombrar(){
+          document.getElementById("autor").innerHTML = "Autor: "+localStorage.getItem(0);
         },
-        //Almacena los datos recibidos en el listado de solicitudes
+
         guardar(){
           this.solicitudes.push(this.datos);
           this.datos = {
             autor:"",
-            formato: null,
+            formato:null,
             comentarios:""
           };
+          console.log();
+        },
 
+        localS(){
+          var local = JSON.parse(localStorage.getItem('01'))
+          if (local===null) {this.solicitudes = [];
+          }else{
+            this.solicitudes=local;
+          }
         }
-      }
+
+      },
     };

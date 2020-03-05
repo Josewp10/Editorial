@@ -1,8 +1,16 @@
 export default {
     data() {
       return {
+        nombreObra:"",
         selected: '',
         //Obras para alimentar el listado de selección
+        temporal: {
+          id: "",
+          imagen: "",
+          nombre: "",
+          nombreAutor: "",
+          estado:''
+        },
         lista_obras: [
             {
                 id: "0001",
@@ -33,24 +41,28 @@ export default {
                 estado:'revision'
             }
         ],
-        //Opciones para el elemento Select
-        options:[
-          {value:0, text: "Viaje al centro de la tierra"}
-        ],
-      
       }
     },
-    methods: {
-      //Alimenta el listado de autores
-      listarAutores() {
-          for (var i = 0; i < this.lista_obras.length; i++) {
-            let lista = lista_obras[i];
-             let temporal = {value: this.lista.id, text: this.lista.nombre}
-             this.options.push(temporal);
-          }
-      },
-      guardar(){
+    mounted(){
+    this.nombrar()},
 
+    methods:{
+      nombrar(){
+        document.getElementById("obra").innerHTML = "Obra: "+localStorage.getItem(1);
+      },
+
+      guardar(){
+        let posicion = this.lista_tareas.findIndex(
+          tarea => temporal.id == this.temporal.id
+
+          this.lista_obras.splice(posicion, 1, this.temporal);
+          this.temporal = {
+            id: "",
+            imagen: "",
+            nombre: "",
+            nombreAutor: "",
+            estado:''
+          }
       }
     }
 

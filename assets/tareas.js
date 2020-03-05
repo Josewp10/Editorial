@@ -25,6 +25,7 @@ export default {
          crearTareas() {
           this.lista_tareas.push(this.tarea);
           localStorage.setItem(this.tarea.id, JSON.stringify(this.tarea));
+            console.log("Tamaño: "+localStorage.length);
           this.tarea = {
             id: "",
             nombre: "",
@@ -40,6 +41,8 @@ export default {
           );
           this.lista_tareas.splice(posicion, 1);
           localStorage.removeItem(posicion);
+
+
 
         },
         cargarTarea({ item }) {

@@ -1,7 +1,7 @@
 export default {
     data() {
       return {
-
+        autor:"",
         //Arreglo que contiene la lista de autores
         autores:[{
           id:1,
@@ -30,18 +30,17 @@ export default {
         };
 
       },
-      methods: {
-        //Alimenta el listado de autores
-        listarAutores() {
-            for (var i = 0; i < this.autores.length; i++) {
-              let lista = autores[i];
-               let temporal = {value: this.lista.id, text: this.lista.nombre}
-               this.options.push(temporal);
-            }
+      mounted(){
+      this.nombrar()},
+
+      methods:{
+        nombrar(){
+          document.getElementById("autor").innerHTML = "Autor: "+localStorage.getItem(0);
         },
         //Almacena los datos recibidos en el listado de maquetaciones
         guardar(){
           this.maquetaciones.push(this.datos);
+          console.log(autor);
           this.datos = {
             autor:"",
             formato: null,
