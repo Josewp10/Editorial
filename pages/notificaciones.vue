@@ -5,14 +5,12 @@
       <b-col>
         <b-card bg-variant="link">
           <b-form-group
-            label-cols-lg="3"
-            label="Notificación a Autores"
-            label-size="lg"
             label-class="font-weight-bold pt-0"
-            class="mb-0"
+            class="mb-1"
           >
             <b-form-group>
-              <b-img center src="@/static/images/revision.png" width="80" height="80"></b-img>
+              <b-img left="1px" src="@/static/images/revision.png" width="80" height="80"></b-img>
+              <b-card-title>Notificar a Autor</b-card-title>
             </b-form-group>
           </b-form-group>
           <b-form-group

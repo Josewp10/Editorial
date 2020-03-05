@@ -5,6 +5,7 @@
       <b-row cols="2">
         <b-col>
           <b-card title="Gestión de Tareas">
+            <b-img left="3px" src="@/static/images/smartphone.png" width="70" height="70"></b-img>
             <b-card-text>A continuación inserte las tareas que ejecutara el módulo de gestión de la publicación :</b-card-text>
 
             <b-form action="javascript:void(0)" @submit="crearTareas()">
