@@ -17,7 +17,7 @@ export default {
                 }
             ],
             opciones_notificacion: [
-                { value: null, text: "Seleccione una carrera", disabled: true },
+                { value: null, text: "Seleccione el tipo de notificación", disabled: true },
                 { value: "001", text: "Con Ajustes" },
                 { value: "002", text: "Versión Maquetada para Revisión" },
                 { value: "003", text: "Versión Final" }
