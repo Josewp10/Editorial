@@ -5,7 +5,6 @@ export default {
             enEdicion: false,
             seguimiento: {
                 id: "",
-                tareas: "",
                 estado: "",
                 comentario: "",
                 acciones: true
@@ -13,7 +12,6 @@ export default {
             lista_seguimiento: [
                 {
                     id: "001",
-                    tareas: "revisar obra",
                     estado: "activo",
                     comentario: "Todo en orden",
                     acciones: true
@@ -23,7 +21,7 @@ export default {
                 { value: null, text: "Seleccione el tipo de estado", disabled: true },
                 { value: "Activo", text: "Activo" },
                 { value: "Inactivo", text: "Inactivo" }
-                
+
             ],
             opciones_listaTarea: [
                 { value: null, text: "Seleccione el tipo de tarea", disabled: true },
@@ -36,7 +34,6 @@ export default {
             this.lista_seguimiento.push(this.seguimiento);
             this.tarea = {
                 id: "",
-                tareas: "",
                 estado: "",
                 comentario: "",
                 acciones: true
@@ -62,7 +59,6 @@ export default {
             this.lista_seguimiento.splice(posicion, 1, this.seguimiento);
             this.seguimiento = {
                 id: "",
-                tareas: "",
                 estado: "",
                 comentario: "",
                 acciones: true

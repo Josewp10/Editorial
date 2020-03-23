@@ -1,19 +1,18 @@
-<template >
+<template>
   <div>
     <br />
     <b-container class="bv-example-row mb-3">
 
-          <b-card title="Solicitud de cesion de derechos">
-            <b-card-text >A continuación eleccione el autor, el formato y agregue un comentario para la cesión de derechos:</b-card-text>
+          <b-card title="Envio obra maquetada">
+            <b-card-text>Seleccione el autor, el archivo y agregueun comentario</b-card-text>
 
             <b-form action="javascript:void(0)" @submit="guardar()">
-              <b-form-group id="autor"label="Autor:" label-for="autor" style=""></b-form-group>
-              <b-form-group label="Comentarios" label-for="comentarios"></b-form-group>
+            <b-form-group id="autor" label="Archivo:" label-for="autor"></b-form-group>
                 <b-form-input
                   class="form-control"
                   v-model="datos.comentarios"
                   id="correo"
-                  placeholder="Descripción de solicitud"
+                  placeholder="Descripción de formato"
                 />
                 <b-form-file v-model="datos.formato" class="mt-3" plain></b-form-file>
                 <br>
@@ -29,4 +28,4 @@
 </template>
 
 
-<script src="../assets/cesion_derechos.js"/>
+<script src="../../assets/envio_maquetacion.js"/>

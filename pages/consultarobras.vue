@@ -21,16 +21,6 @@
             <template v-slot:cell(acciones)="row">
 <!-- HEAD-->
 
-              <b-button
-                href="/propuestas"
-                size="sm"
-                @click="cargarObra(row)"
-                class="mr-2"
-                variant="primary"
-              >Ver</b-button>
-
-              <br />
-              <br />
               <b-button href="/seguimiento" size="sm" class="mr-2" variant="danger">Revisar</b-button>
             </template>
           </b-table>

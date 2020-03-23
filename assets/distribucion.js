@@ -53,7 +53,7 @@ export default {
 
       guardar(){
         let posicion = this.lista_tareas.findIndex(
-          tarea => temporal.id == this.temporal.id
+          tarea => temporal.id == this.temporal.id)
 
           this.lista_obras.splice(posicion, 1, this.temporal);
           this.temporal = {

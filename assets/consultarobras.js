@@ -45,7 +45,7 @@ export default {
     },
     methods: {
 
-        cargarObra({ item }) {
+           cargarObra({ item }) {
             let task = this.lista_obras.find(
                 obras => obras.id == item.id
             );

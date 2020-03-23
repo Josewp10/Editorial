@@ -10,22 +10,17 @@ export default {
           encargado:"",
           acciones: true
         },
-        lista_tareas: [
-            {
-              id: "0001",
-              nombre: "Revisar Obras",
-              descripcion: "Revisión de nueva versión de obras ajustada según observaciones, para visto bueno final",
-              encargado: "Sello Editorial",
-              acciones: true
-            }
-          ],
+        lista_tareas: [],
         };
+      },
+      mounted(){
+
+        this.cargarTarea();
       },
       methods: {
          crearTareas() {
           this.lista_tareas.push(this.tarea);
-          localStorage.setItem(this.tarea.id, JSON.stringify(this.tarea));
-            console.log("Tamaño: "+localStorage.length);
+
           this.tarea = {
             id: "",
             nombre: "",
@@ -33,33 +28,36 @@ export default {
             encargado: "",
             acciones: true
           };
-
+            localStorage.setItem("tareas", JSON.stringify(this.lista_tareas));
         },
         eliminarTareas({ item }) {
           let posicion = this.lista_tareas.findIndex(
             tarea => tarea.id == item.id
           );
           this.lista_tareas.splice(posicion, 1);
-          localStorage.removeItem(posicion);
-
-
-
+          localStorage.setItem("tareas", JSON.stringify(this.lista_tareas));
         },
-        cargarTarea({ item }) {
-          /*let task = this.lista_tareas.find(
-            tarea => tarea.id == item.id
-          );*/
-          let task = JSON.parse(localStorage.getItem(item));
-          this.enEdicion = true;
-          this.tarea = Object.assign({}, task);
+        cargarTarea() {
+          let task = JSON.parse(localStorage.getItem("tareas"));
+          if(task == null){
+            this.lista_tareas.push({
+              id: "0001",
+              nombre: "Revisar Obras",
+              descripcion: "Revisión de nueva versión de obras ajustada según observaciones, para visto bueno final",
+              encargado: "Sello Editorial",
+              acciones: true
+            })
+              localStorage.setItem("tareas", JSON.stringify(this.lista_tareas));
+          }else{
+            this.lista_tareas  = task;
+          }
         },
         actualizarTarea() {
           let posicion = this.lista_tareas.findIndex(
             tarea => tarea.id == this.tarea.id
           );
-          //this.lista_tareas.splice(posicion, 1, this.tarea);
-          localStorage.setItem(posicion,this.tarea);
-
+          this.lista_tareas.splice(posicion, 1, this.tarea);
+          localStorage.setItem("tareas", JSON.stringify(this.lista_tareas));
           this.tarea = {
              id: "",
             nombre: "",

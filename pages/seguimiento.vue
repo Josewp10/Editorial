@@ -22,9 +22,9 @@
 
               <b-form-group>
                 <b-form-select v-model="seguimiento.estado" :options="opciones_estados"></b-form-select>
-              <br/> 
+              <br/>
               </b-form-group>
-              
+
               <b-form-group>
               <b-form-select v-model="seguimiento.tareas" :options="opciones_listaTarea"></b-form-select>
               <br>
@@ -43,14 +43,22 @@
         </b-col>
         <b-col>
           <b-table striped hover :items="lista_seguimiento">
+
             <template v-slot:cell(acciones)="row">
+              <b-button
+                size="sm"
+                @click=""
+                class="mr-2"
+                variant=""
+                href="../propuestas/propuestas"
+              >Tareas</b-button>
+              <br>
               <b-button
                 size="sm"
                 @click="cargarSeguimiento(row)"
                 class="mr-2"
                 variant="warning"
               >Modificar</b-button>
-              <br>
               <br>
               <b-button
                 size="sm"
