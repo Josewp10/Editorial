@@ -28,4 +28,4 @@
 </template>
 
 
-<script src="../../assets/envio_maquetacion.js"/>
+<script src="../../assets/propuestas/envio_maquetacion.js"/>

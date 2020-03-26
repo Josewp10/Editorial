@@ -9,25 +9,23 @@ export default {
                 comentario: "",
                 acciones: true
             },
-            lista_seguimiento: [
-                {
-                    id: "001",
-                    estado: "activo",
-                    comentario: "Todo en orden",
-                    acciones: true
-                }
-              ],
-              opciones_estados: [
-                { value: null, text: "Seleccione el tipo de estado", disabled: true },
-                { value: "Activo", text: "Activo" },
-                { value: "Inactivo", text: "Inactivo" }
-
-            ],
-            opciones_listaTarea: [
-                { value: null, text: "Seleccione el tipo de tarea", disabled: true },
-                { value: "Revision obra", text: "Revision obra" }
-            ]
+            lista_seguimiento: [ ]
         };
+    },
+    mounted(){
+      let task = JSON.parse(localStorage.getItem("seguimiento"));
+      if(task == null){
+        this.lista_seguimiento.push({
+            id: "001",
+            estado: "activo",
+            comentario: "Todo en orden",
+            acciones: true
+        })
+          localStorage.setItem("seguimiento", JSON.stringify(this.lista_seguimiento));
+            this.cargarSeguimiento();
+      }else{
+          this.cargarSeguimiento();
+      }
     },
     methods: {
         crearSeguimiento() {
@@ -45,12 +43,10 @@ export default {
             );
             this.lista_seguimiento.splice(posicion, 1);
         },
-        cargarSeguimiento({ item }) {
-            let task = this.lista_seguimiento.find(
-                seguimiento => seguimiento.id == item.id
-            );
-            this.enEdicion = true;
-            this.seguimiento = Object.assign({}, task);
+        cargarSeguimiento() {
+          let task = JSON.parse(localStorage.getItem("seguimiento"));
+            this.lista_seguimiento  = task;
+            //this.enEdicion = true;
         },
         actualizarSeguimiento() {
             let posicion = this.lista_seguimiento.findIndex(

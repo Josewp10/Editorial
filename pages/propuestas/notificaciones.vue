@@ -38,4 +38,4 @@
   </b-container>
 </template>
 
-<script src="../assets/notificaciones.js"/>
+<script src="../../assets/propuestas/notificaciones.js"/>

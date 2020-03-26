@@ -44,12 +44,9 @@ export default {
       }
     },
     mounted(){
-    this.nombrar()},
+  },
 
     methods:{
-      nombrar(){
-        document.getElementById("obra").innerHTML = "Obra: "+localStorage.getItem(1);
-      },
 
       guardar(){
         let posicion = this.lista_tareas.findIndex(

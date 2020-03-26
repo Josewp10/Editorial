@@ -57,7 +57,7 @@
         <b-col>
           <b-table striped hover :items="lista_tareas">
             <template v-slot:cell(acciones)="row">
-              <b-button size="sm" @click="cargarTarea(row)" class="mr-2" variant="warning">Modificar</b-button>
+              <b-button size="sm" @click="actualizarTarea(row)" class="mr-2" variant="warning">Modificar</b-button>
               <br />
               <br />
               <b-button

@@ -29,4 +29,4 @@
 </template>
 
 
-<script src="../../assets/cesion_derechos.js"/>
+<script src="../../assets/propuestas/cesion_derechos.js"/>

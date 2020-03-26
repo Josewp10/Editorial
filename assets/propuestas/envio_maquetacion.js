@@ -1,7 +1,4 @@
 export default {
-    created(){
-
-    },
     data() {
       return {
         autor:"",
@@ -25,7 +22,7 @@ export default {
           comentarios:""
         },
         //Listado de solicitudes realizadas
-        solicitudes:[{
+        maquetaciones:[{
           autor:"",
           formato: null,
           comentarios:""
@@ -33,31 +30,21 @@ export default {
         };
 
       },
-      mounted(){this.localS()
-      this.nombrar()},
+      mounted(){
+      },
 
       methods:{
-        nombrar(){
-          document.getElementById("autor").innerHTML = "Autor: "+localStorage.getItem(0);
-        },
 
+        //Almacena los datos recibidos en el listado de maquetaciones
         guardar(){
-          this.solicitudes.push(this.datos);
+          this.maquetaciones.push(this.datos);
+          console.log(autor);
           this.datos = {
             autor:"",
-            formato:null,
+            formato: null,
             comentarios:""
           };
-          console.log();
-        },
 
-        localS(){
-          var local = JSON.parse(localStorage.getItem('01'))
-          if (local===null) {this.solicitudes = [];
-          }else{
-            this.solicitudes=local;
-          }
         }
-
-      },
+      }
     };

@@ -1,4 +1,7 @@
 export default {
+    created(){
+
+    },
     data() {
       return {
         autor:"",
@@ -22,7 +25,7 @@ export default {
           comentarios:""
         },
         //Listado de solicitudes realizadas
-        maquetaciones:[{
+        solicitudes:[{
           autor:"",
           formato: null,
           comentarios:""
@@ -30,23 +33,22 @@ export default {
         };
 
       },
-      mounted(){
-      this.nombrar()},
+      mounted(){},
 
       methods:{
         nombrar(){
-          document.getElementById("autor").innerHTML = "Autor: "+localStorage.getItem(0);
+
         },
-        //Almacena los datos recibidos en el listado de maquetaciones
+
         guardar(){
-          this.maquetaciones.push(this.datos);
-          console.log(autor);
+          this.solicitudes.push(this.datos);
           this.datos = {
             autor:"",
-            formato: null,
+            formato:null,
             comentarios:""
           };
-
+          console.log();
         }
-      }
+
+      },
     };

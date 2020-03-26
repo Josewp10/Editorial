@@ -31,4 +31,4 @@
     </b-container>
   </div>
 </template>
-<script src="../../assets/distribucion.js"/>
+<script src="../../assets/propuestas/distribucion.js"/>
