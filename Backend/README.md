@@ -1,22 +1,12 @@
-# Editorial
+# Editorial - Backend
 
-> proyecto del sello editorial
+> Modulo Gestión de la Publiccación
 
-## Build Setup
 
-``` bash
-# install dependencies
-$ npm install
+# Desarrolladores
 
-# serve with hot reload at localhost:3000
-$ npm run dev
+Alejandra Álvarez Fernández
+Juan José Arroyave Serna
+José David Marulanda Orozco
 
-# build for production and launch server
-$ npm run build
-$ npm run start
-
-# generate static project
-$ npm run generate
-```
-
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+# Funcionalidades
