@@ -7,7 +7,6 @@
       <h1 class="title">Bienvenido al</h1>
       <h2 class="subtitle">Módulo Gestión de la Publicación</h2>
       <b-button href="/tareas" variant="primary"><b-img center src="@/static/images/checklist.png" width="50" height="50"></b-img>Gestión de Tareas</b-button>
-      <b-button href="/acercade" variant="warning"><b-img center src="@/static/images/team.png" width="50" height="50"></b-img>Desarrolladores</b-button>
       <b-button href="/consultarobras" variant="danger"><b-img center src="@/static/images/search.png" width="50" height="50"></b-img>  Buscar Obras </b-button>
     </div>
   </div>
