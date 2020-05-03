@@ -5,14 +5,16 @@
 
 # Desarrolladores
 
-Alejandra Álvarez Fernández:  Estudiante de Ingeniería De Sistemas. Me gusta compartir con amigos y familia,
+>Alejandra Álvarez Fernández:  Estudiante de Ingeniería De Sistemas. Me gusta compartir con amigos y familia,
                     en mis tiempos libre me encanta dormir, soy muy puntual en las cosas, comprometida en lo que hago
-                    y un poco estricta cuando trabajo en equipo 
-Juan José Arroyave Serna: Estudiante de Ingeniería De Sistemas. Me gusta compartir con mis amigos y familia, aprender cosas nuevas, viajar, me apasiona
+                    y un poco estricta cuando trabajo en equipo.
+                    
+>Juan José Arroyave Serna: Estudiante de Ingeniería De Sistemas. Me gusta compartir con mis amigos y familia, aprender cosas nuevas, viajar, me apasiona
                     la programación desde una experiencia de usuario intuitiva
                     y con un buen diseño, me gustaria ser un experto en UX/UI y desarrollo frontend y especializarme en desarrollo de software
                     con IOT e IA. Comprometido con el desarrollo de los proyectos y tratar de que todo salga a la perfección.  
-José David Marulanda Orozco: Estudiante de Ingeniería de Sistemas
+
+>José David Marulanda Orozco: Estudiante de Ingeniería de Sistemas
                     Me gusta aprender cosas nuevas, generar ideas y buscar soluciones, me apasionan los negocios y pensar en aplicar mi carrera en este mundo, viajar, conocer lugares nuevos y mejorar cuando de trabajo en equipo se trata
 
 # Gestión de la publicación
