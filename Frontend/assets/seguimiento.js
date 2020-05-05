@@ -9,56 +9,39 @@ export default {
                 comentario: "",
                 acciones: true
             },
-            lista_seguimiento: [ ]
+            lista_seguimiento: [],
+            lista_busqueda:[]
         };
     },
-    mounted(){
-      let task = JSON.parse(localStorage.getItem("seguimiento"));
-      if(task == null){
+    mounted() {
         this.lista_seguimiento.push({
             id: "001",
             estado: "activo",
             comentario: "Todo en orden",
             acciones: true
         })
-          localStorage.setItem("seguimiento", JSON.stringify(this.lista_seguimiento));
-            this.cargarSeguimiento();
-      }else{
-          this.cargarSeguimiento();
-      }
+        
+
+        this.lista_busqueda.push({
+            id: "001",
+            NombreObra:"Zootecnia 1",
+            estado: "Todo en orden",
+        })
+       
+
     },
     methods: {
+        //Codigo de implementación con el Axios Api
         crearSeguimiento() {
-            this.lista_seguimiento.push(this.seguimiento);
-            this.tarea = {
-                id: "",
-                estado: "",
-                comentario: "",
-                acciones: true
-            };
+
         },
         eliminarSeguimiento({ item }) {
-            let posicion = this.lista_seguimiento.findIndex(
-                seguimiento => seguimiento.id == item.id
-            );
-            this.lista_seguimiento.splice(posicion, 1);
+
         },
         cargarSeguimiento() {
-          let task = JSON.parse(localStorage.getItem("seguimiento"));
-            this.lista_seguimiento  = task;
-            //this.enEdicion = true;
+
         },
         actualizarSeguimiento() {
-            let posicion = this.lista_seguimiento.findIndex(
-                seguimiento => seguimiento.id == this.seguimiento.id
-            );
-            this.lista_seguimiento.splice(posicion, 1, this.seguimiento);
-            this.seguimiento = {
-                id: "",
-                estado: "",
-                comentario: "",
-                acciones: true
-            };
 
         }
     }

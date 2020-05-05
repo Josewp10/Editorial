@@ -36,15 +36,6 @@
                 />
               </b-form-group>
 
-              <b-form-group label="Encargado" label-for="encargado">
-                <b-form-input
-                  class="form-control"
-                  v-model="tarea.encargado"
-                  id="correo"
-                  placeholder="Ingrese Encargado de realizar la tarea"
-                />
-              </b-form-group>
-
               <b-button type="submit" variant="danger" v-if="!enEdicion">Crear Tarea</b-button>
               <b-button @click="actualizarTarea()" variant="primary" v-else>Actualizar Tarea</b-button>
             </b-form>
