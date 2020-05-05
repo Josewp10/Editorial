@@ -5,6 +5,7 @@ export default {
             enEdicion: false,
             seguimiento: {
                 id: "",
+                obra:"",
                 estado: "",
                 comentario: "",
                 acciones: true
@@ -17,6 +18,7 @@ export default {
         this.lista_seguimiento.push({
             id: "001",
             estado: "activo",
+            obra:"Zootecnia",
             comentario: "Todo en orden",
             acciones: true
         })
