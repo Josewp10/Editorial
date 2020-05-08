@@ -29,10 +29,11 @@ let validar = tareas => {
 let guardar = async (tareas) => {
     let _servicio = new ServicioPg();
     let sql = `INSERT INTO public.pu_tareas
-                 (id,nombre, descripcion)VALUES (
+                 (id,nombre, descripcion,modulo)VALUES (
                     '${pu_tareas.id}',
                     '${pu_tareas.nombre}',
-                    '${pu_tareas.descripcion}'`;
+                    '${pu_tareas.descripcion}',
+                    '${pu_tareas.modulo}'`;
     let respuesta = await _servicio.ejecutarSql(sql);
     return respuesta;
 };
