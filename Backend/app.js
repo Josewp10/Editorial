@@ -19,7 +19,7 @@ app.get("/", (req, res)=>{
 //app.use(rutas_seguimiento);
 
 const ruta_tareas = require("./routes/tareas")
-app.use(rutas_tareas);
+app.use(ruta_tareas);
 
 //Puerto
 const port = 3001

@@ -1,4 +1,4 @@
-const ServicioPg = require("../services/postgres");
+const ServicioPg = require("../services/postgress");
 
 
 // se valida la informacion 
