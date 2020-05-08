@@ -54,4 +54,4 @@ let eliminar = async (toDelete) => {
 
 // exportar los metodos para ser usados en otros archivos
 
-module.exports = { validar, guardar, consultar, eliminar};
+module.exports = { validar, guardar, consultar, eliminar };
