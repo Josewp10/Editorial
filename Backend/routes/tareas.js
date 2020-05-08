@@ -14,7 +14,7 @@ router.get("/tareas", async (req, res) => {
         .consultar(info_tareas)
         .then((tareasDB) => {
             let tareas = tareasDB.rows;
-            res.send({ ok: true, info: tareas, mensaje: "las tareas consultados" });
+            res.send({ ok: true, info: tareas, mensaje: "Tareas consultadas" });
         })
         .catch((error) => {
             res.send(error);
@@ -31,7 +31,7 @@ router.post("/tareas", async (req, res) => {
         _controlador
             .guardar(info)
             .then((tareasDB) => {
-                res.send({ ok: true, mensaje: "Registro ingresado guardado", info: info });
+                res.send({ ok: true, mensaje: "Tarea Guardada Exitosamente", info: info });
             })
             .catch((error) => {
                 res.send(error);
@@ -51,7 +51,7 @@ router.post("/tareas", async (req, res) => {
       .eliminar(info_tareas)
       .then((tareasDB) => {
         let reg = tareasDB;
-        res.send({ ok: true, info: reg, mensaje: "registro eliminado" });
+        res.send({ ok: true, info: reg, mensaje: "Tarea Eliminada" });
       })
       .catch((error) => {
         res.send(error);

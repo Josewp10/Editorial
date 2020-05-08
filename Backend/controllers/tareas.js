@@ -22,31 +22,24 @@ let validar = tareas => {
             ok: false,
             mensaje: "La descripcion de la tarea"
         };
-        
-    } else if (!tareas.Encargado) {
-        throw {
-            ok: false,
-            mensaje: "El encargado de la tarea."
-        };
     }
 };
 
 
 let guardar = async tareas => {
     let _servicio = new ServicioPg();
-    let sql = `INSERT INTO public.tarea
+    let sql = `INSERT INTO public.pu_tareas
                  (nombre, url, descripcion)VALUES (
-                    '${tareas.id}',
-                    '${tareas.nombre}',
-                    '${tareas.descripcion}',
-                    '${tareas.Encargado}');`;
+                    '${pu_tareas.id}',
+                    '${pu_tareas.nombre}',
+                    '${pu_tareas.descripcion}'`;
     let respuesta = await _servicio.ejecutarSql(sql);
     return respuesta;
 };
 
 let consultar = async (tareas) => {
     let _servicio = new ServicioPg();
-    let sql = `SELECT * FROM tarea `;
+    let sql = `SELECT * FROM pu_tareas `;
     let respuesta = await _servicio.ejecutarSql(sql);
     return respuesta;
 };
@@ -54,7 +47,7 @@ let consultar = async (tareas) => {
 
 let eliminar = async (toDelete) => {
     let _servicio = new ServicioPg();
-    let sql = `DELETE FROM public.tarea WHERE id = ${toDelete.id}`
+    let sql = `DELETE FROM public.pu_tareas WHERE id = ${toDelete.id}`
     let respuesta = await _servicio.ejecutarSql(sql);
     return respuesta;
 }
