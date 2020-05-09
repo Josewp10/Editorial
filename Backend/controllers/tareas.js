@@ -3,7 +3,7 @@ const ServicioPg = require("../services/postgress");
 
 // se valida la informacion 
 
-let validar = tareas => {
+let validarTarea = tareas => {
 
     if (!tareas) {
         throw {
@@ -16,29 +16,28 @@ let validar = tareas => {
             ok: false,
             mensaje: "El nombre de la tarea "
         };
-
     } else if (!tareas.descripcion) {
         throw {
             ok: false,
             mensaje: "La descripcion de la tarea"
         };
-    }
+    } 
 };
 
 
-let guardar = async (tareas) => {
+let guardarTarea = async (tareas) => {
     let _servicio = new ServicioPg();
-    let sql = `INSERT INTO public.pu_tareas
-                 (id,nombre, descripcion,modulo)VALUES (
+    let sql = `INSERT INTO public.pu_tareas(
+        id, nombre, descripcion, modulo) VALUES (
                     '${pu_tareas.id}',
                     '${pu_tareas.nombre}',
                     '${pu_tareas.descripcion}',
-                    '${pu_tareas.modulo}'`;
+                    '${pu_tareas.modulo}');`;
     let respuesta = await _servicio.ejecutarSql(sql);
     return respuesta;
 };
 
-let consultar = async (tareas) => {
+let consultarTareas = async (tareas) => {
     let _servicio = new ServicioPg();
     let sql = `SELECT * FROM pu_tareas `;
     let respuesta = await _servicio.ejecutarSql(sql);
@@ -55,4 +54,4 @@ let eliminar = async (toDelete) => {
 
 // exportar los metodos para ser usados en otros archivos
 
-module.exports = { validar, guardar, consultar, eliminar };
+module.exports = { validarTarea, guardarTarea, consultarTareas, eliminar };

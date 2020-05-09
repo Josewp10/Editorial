@@ -1,13 +1,14 @@
 const express = require("express");
 const router = express.Router();
-const _controlador = require("../controllers/tareas");
+const { validarTarea,
+    guardarTarea,
+    consultarTareas, } = require("../controllers/tareas");
 
 
 
 router.get("/tareas", async (req, res) => {
     let info_tareas = await req.body;
-    _controlador
-        .consultar(info_tareas)
+    consultarTareas(info_tareas)
         .then(tareasDB => {
             let tareas = tareasDB.rows;
             res.send({ ok: true, info: tareas, mensaje: "Tareas consultadas" });
@@ -19,28 +20,28 @@ router.get("/tareas", async (req, res) => {
 
 //Guardamos 
 
-router.post("/tareas", async (req, res) => {
-    console.log("que cuca parce");
-    
+router.post("/tareas", (req, res) => {
+    console.log("entro al try");
     try {
-        let info_tarea = await req.body;
-        console.log("ey pana");
-        
-        _controlador.validar(info_tarea);
-        console.log("vamo a ganar");
-        
-        _controlador
-            .guardar(info_tarea)
+        let info_tarea = req.body;
+        console.log(info_tarea);
+
+        validarTarea(info_tarea);
+        console.log("valido la info");
+
+        guardarTarea(info_tarea)
             .then(respuestaDB => {
-                res.send({ ok: true, mensaje: "Tarea Registrada exitosamente", info: info_tarea });
+                console.log("entro");
+                
+                res.send({ ok: true, mensaje: "Tarea guardada", info: info_tarea });
             })
             .catch(error => {
                 res.send(error);
             });
-
     } catch (error) {
         res.send(error);
     }
+
 });
 
 
