@@ -21,13 +21,10 @@ router.get("/tareas", async (req, res) => {
 //Guardamos 
 
 router.post("/tareas", (req, res) => {
-    console.log("entro al try");
     try {
         let info_tarea = req.body;
-        console.log(info_tarea);
 
         validarTarea(info_tarea);
-        console.log("valido la info");
 
         guardarTarea(info_tarea)
             .then(respuestaDB => {

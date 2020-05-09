@@ -25,7 +25,7 @@ let validarTarea = tareas => {
 };
 
 
-let guardarTarea = async (tareas) => {
+let guardarTarea = async (pu_tareas) => {
     let _servicio = new ServicioPg();
     let sql = `INSERT INTO public.pu_tareas(
         id, nombre, descripcion, modulo) VALUES (
