@@ -5,7 +5,7 @@ const ServicioPg = require("../services/postgress");
 
 let validarSeguimiento = seguimiento => {
 
-    if (!seguimiento) {
+    if (!seguimiento.id) {
         throw {
             ok: false,
             mensaje: "El id del seguimiento"
@@ -32,20 +32,26 @@ let validarSeguimiento = seguimiento => {
             ok: false,
             mensaje: "El estado del seguimiento"
         };
+    } else if (!seguimiento.archivo) {
+        throw {
+            ok: false,
+            mensaje: "El estado del seguimiento"
+        }; 
     } 
 };
 
 
 let guardarSeguimiento = async (pu_seguimientos_propuestas) => {
     let _servicio = new ServicioPg();
-    let sql = `INSERT INTO public.pu_seguimientos_propuestas(
-        id, id_tarea, fecha, comentario, estado, archivo) VALUES (
+    let sql = `INSERT INTO public.pu_seguimientos_propuestas (
+        id, id_tarea, fecha, comentario, estado, archivo, id_propuesta) VALUES (
                     '${pu_seguimientos_propuestas.id}',
                     '${pu_seguimientos_propuestas.id_tarea}',
                     '${pu_seguimientos_propuestas.fecha}',
                     '${pu_seguimientos_propuestas.comentario}',
                     '${pu_seguimientos_propuestas.estado}'
-                    '${pu_seguimientos_propuestas.archivo}');`;
+                    '${pu_seguimientos_propuestas.archivo}',
+                    '${pu_seguimientos_propuestas.id_propuesta}');`;
     let respuesta = await _servicio.ejecutarSql(sql);
     return respuesta;
 };

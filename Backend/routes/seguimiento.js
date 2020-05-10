@@ -25,11 +25,11 @@ router.get("/seguimiento", async (req, res) => {
 router.post("/seguimiento", (req, res) => {
     try {
         let info_seguimiento = req.body;
-        console.log("INFO: "+info_seguimiento);
+
+        console.log(info_seguimiento);
+
         validarSeguimiento(info_seguimiento);
         console.log("valido la info");
-
-        
         
         guardarSeguimiento(info_seguimiento)
             .then(respuestaDB => {
@@ -75,7 +75,7 @@ router.put("/seguimiento/:id", (req, res) => {
       // Actualiza el usuario en base de datos
       editarSeguimiento(info_seguimiento, id)
         .then(respuestaDB => {
-          res.send({ ok: true, mensaje: "Seguimiento editado", info: info_tarea });
+          res.send({ ok: true, mensaje: "Seguimiento editado", info: info_seguimiento });
         })
         .catch(error => {
           res.send(error);
