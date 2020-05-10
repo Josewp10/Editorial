@@ -78,14 +78,13 @@ let eliminarSeguimiento = async (id) => {
     if(pu_seguimientos_propuestas.id != id){
         throw {
             ok: false,
-            mensaje: "el id de la seguimiento no corresponde al enviado",   
+            mensaje: "el id del seguimiento no corresponde al enviado",   
         };
     }
-    console.log("NOOOO")
     let _servicio = new ServicioPg();
-    let sql = 'UPDATE public.pu_seguimientos_propuestas set nombre =$1,'
-    +'descripcion =$2, modulo =$3 WHERE id = $4;';
-    let valores = [pu_seguimientos_propuestas.nombre, pu_seguimientos_propuestas.descripcion, pu_seguimientos_propuestas.modulo, id]
+    let sql = 'UPDATE public.pu_seguimientos_propuestas set id_tarea =$1,'
+    +'fecha =$2, comentario =$3, estado =$4, archivo =$4, id_propuesta =$5 WHERE id = $6;';
+    let valores = [pu_seguimientos_propuestas.id_tarea, pu_seguimientos_propuestas.fecha, pu_seguimientos_propuestas.comentario, pu_seguimientos_propuestas.estado, pu_seguimientos_propuestas.archivo, pu_seguimientos_propuestas.id_propuesta, id]
     let respuesta = await _servicio.ejecutarSql(sql, valores);
     
     return respuesta;
