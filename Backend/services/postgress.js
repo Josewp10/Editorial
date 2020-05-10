@@ -16,8 +16,8 @@ class ServicioPG {
 // Ejecuta la clase y el metodo se debe hacer
 // de forma asincrona para que respuesta tenga un valor
   
-async ejecutarSql(sql) {
-    let respuesta = await this.pool.query(sql);
+async ejecutarSql(sql,params) {
+    let respuesta = await this.pool.query(sql,params);
     return respuesta;
   }
 }
