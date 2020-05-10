@@ -71,7 +71,8 @@ router.delete("/seguimiento/:id", (req, res) => {
       // Actualiza el usuario en base de datos
       editarSeguimiento(info_seguimiento, id)
         .then(respuestaDB => {
-          res.send({ ok: true, mensaje: "seguimiento editada", info: info_seguimiento });
+          res.send({ ok: true, mensaje: "Seguimiento editado", info: info_seguimiento });
+
         })
         .catch(error => {
           res.send(error);

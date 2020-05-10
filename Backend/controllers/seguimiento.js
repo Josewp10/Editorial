@@ -5,7 +5,7 @@ const ServicioPg = require("../services/postgress");
 
 let validarSeguimiento = seguimiento => {
 
-    if (!seguimiento) {
+    if (!seguimiento.id) {
         throw {
             ok: false,
             mensaje: "El id del seguimiento"
@@ -42,16 +42,17 @@ let validarSeguimiento = seguimiento => {
     }else if (!seguimiento.id_propuesta) {
         throw {
             ok: false,
-            mensaje: "El archivo del seguimiento"
+            mensaje: "la propuesta del seguimiento"
         };
         
     }
+    
 };
 
 
 let guardarSeguimiento = async (pu_seguimientos_propuestas) => {
     let _servicio = new ServicioPg();
-    let sql = `INSERT INTO public.pu_seguimientos_propuestas(
+    let sql = `INSERT INTO public.pu_seguimientos_propuestas (
         id, id_tarea, fecha, comentario, estado, archivo, id_propuesta) VALUES (
                     '${pu_seguimientos_propuestas.id}',
                     '${pu_seguimientos_propuestas.id_tarea}',
@@ -90,7 +91,6 @@ let eliminarSeguimiento = async (id) => {
             mensaje: "el id de la tarea no corresponde al enviado",   
         };
     }
-    console.log("NOOOO")
     let _servicio = new ServicioPg();
    
     let sql = 'UPDATE public.pu_seguimientos_propuestas set id_tarea =$1,'

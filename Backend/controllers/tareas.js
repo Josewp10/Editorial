@@ -61,7 +61,6 @@ let eliminarTarea = async (id) => {
             mensaje: "el id de la tarea no corresponde al enviado",   
         };
     }
-    console.log("NOOOO")
     let _servicio = new ServicioPg();
     let sql = 'UPDATE public.pu_tareas set nombre =$1,'
     +'descripcion =$2, modulo =$3 WHERE id = $4;';
