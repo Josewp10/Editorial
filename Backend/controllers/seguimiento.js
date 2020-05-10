@@ -5,13 +5,13 @@ const ServicioPg = require("../services/postgress");
 
 let validarSeguimiento = seguimiento => {
 
-    if (!seguimiento.id) {
+    if (!seguimiento) {
         throw {
             ok: false,
             mensaje: "El id del seguimiento"
         };
 
-    } else if (!seguimiento.id_tarea) {
+  } else if (!seguimiento.id_tarea) {
         throw {
             ok: false,
             mensaje: "El id de la tarea"
@@ -27,7 +27,7 @@ let validarSeguimiento = seguimiento => {
             ok: false,
             mensaje: "El comentario del seguimiento"
         };
-    } else if (!seguimiento.estado) {
+    } else if (!pu_seguimiento_propuestas.estado) {
         throw {
             ok: false,
             mensaje: "El estado del seguimiento"
