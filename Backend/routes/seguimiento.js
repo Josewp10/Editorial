@@ -1,18 +1,17 @@
 const express = require("express");
 const router = express.Router();
-
-
-
-
-const _controlador = require("../controllers/seguimiento");
+const {validarSeguimiento,
+    guardarSeguimiento,
+    consultarSeguimiento,
+    eliminarSeguimiento,
+    editarSeguimiento } = require("../controllers/seguimiento");
 
 
 
 router.get("/seguimiento", async (req, res) => {
     let info_seguimiento = await req.body;
-    _controlador
-        .consultar(info_seguimiento)
-        .then((seguimientoDB) => {
+    consultarSeguimiento(info_seguimiento)
+        .then(seguimientoDB => {
             let seguimiento = seguimientoDB.rows;
             res.send({ ok: true, info: seguimiento, mensaje: "Seguimientos consultados" });
         })
@@ -23,17 +22,23 @@ router.get("/seguimiento", async (req, res) => {
 
 //Guardamos 
 
-router.post("/seguimiento", async (req, res) => {
-
+router.post("/seguimiento", (req, res) => {
     try {
-        let info = await req.body;
-        _controlador.validar(info);
-        _controlador
-            .guardar(info)
-            .then((seguimientoDB) => {
-                res.send({ ok: true, mensaje: "Seguimiento registrado correctamente", info: info });
+        let info_seguimiento = req.body;
+        console.log("INFO: "+info_seguimiento);
+        validarSeguimiento(info_seguimiento);
+        console.log("valido la info");
+
+        
+        
+        guardarSeguimiento(info_seguimiento)
+            .then(respuestaDB => {
+                console.log("entro");
+                
+                res.send({ ok: true, mensaje: "Seguimiento guardado", info: info_seguimiento });
             })
-            .catch((error) => {
+            .catch(error => {
+                console.log("Pille el error:"+error);
                 res.send(error);
             });
     } catch (error) {
@@ -43,21 +48,46 @@ router.post("/seguimiento", async (req, res) => {
 });
 
 
-   //Eliminar
-   
-   router.delete("/seguimiento", async (req, res) => {
-    let info_seguimiento = await req.body;
-    _controlador
-      .eliminar(info_seguimiento)
-      .then((seguimientoDB) => {
-        let reg = seguimientoDB;
-        res.send({ ok: true, info: reg, mensaje: "Seguimiento eliminado correctamente" });
+//Eliminar
+
+
+router.delete("/seguimiento/:id", (req, res) => {
+    let id = req.params.id;
+    eliminarSeguimiento(id)
+      .then((respuestaDB) => {
+        console.log("LOLO")
+        res.send({ ok: true,  mensaje: "Seguimiento eliminado", info: {id} });
       })
       .catch((error) => {
         res.send(error);
       });
-  
   });
+  
+  //Actualizar
+
+ 
+router.put("/seguimiento/:id", (req, res) => {
+    try {
+      //Capturar el body desde la solicitud
+      let id = req.params.id;
+      let info_seguimiento = req.body;
+  
+      // Actualiza el usuario en base de datos
+      editarSeguimiento(info_seguimiento, id)
+        .then(respuestaDB => {
+          res.send({ ok: true, mensaje: "Seguimiento editado", info: info_tarea });
+        })
+        .catch(error => {
+          res.send(error);
+        });
+  
+      // Responder
+    } catch (error) {
+      res.send(error);
+    }
+    
+  });
+
 
 //Exportación del router
 
