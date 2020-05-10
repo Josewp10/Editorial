@@ -32,12 +32,21 @@ let validarSeguimiento = seguimiento => {
             ok: false,
             mensaje: "El estado del seguimiento"
         };
-    } else if (!seguimiento.archivo) {
+        
+    }else if (!seguimiento.archivo) {
         throw {
             ok: false,
-            mensaje: "El estado del seguimiento"
-        }; 
-    } 
+            mensaje: "El archivo del seguimiento"
+        };
+        
+    }else if (!seguimiento.id_propuesta) {
+        throw {
+            ok: false,
+            mensaje: "la propuesta del seguimiento"
+        };
+        
+    }
+    
 };
 
 
@@ -49,7 +58,7 @@ let guardarSeguimiento = async (pu_seguimientos_propuestas) => {
                     '${pu_seguimientos_propuestas.id_tarea}',
                     '${pu_seguimientos_propuestas.fecha}',
                     '${pu_seguimientos_propuestas.comentario}',
-                    '${pu_seguimientos_propuestas.estado}'
+                    '${pu_seguimientos_propuestas.estado}',
                     '${pu_seguimientos_propuestas.archivo}',
                     '${pu_seguimientos_propuestas.id_propuesta}');`;
     let respuesta = await _servicio.ejecutarSql(sql);
@@ -74,17 +83,19 @@ let eliminarSeguimiento = async (id) => {
   };
   
 
-  let editarSeguimiento = async (pu_seguimientos_propuestas, id) => {
-    if(pu_seguimientos_propuestas.id != id){
+ 
+  let editarSeguimiento = async (seguimiento, id) => {
+    if(seguimiento.id != id){
         throw {
             ok: false,
-            mensaje: "el id del seguimiento no corresponde al enviado",   
+            mensaje: "el id de la tarea no corresponde al enviado",   
         };
     }
     let _servicio = new ServicioPg();
+   
     let sql = 'UPDATE public.pu_seguimientos_propuestas set id_tarea =$1,'
-    +'fecha =$2, comentario =$3, estado =$4, archivo =$4, id_propuesta =$5 WHERE id = $6;';
-    let valores = [pu_seguimientos_propuestas.id_tarea, pu_seguimientos_propuestas.fecha, pu_seguimientos_propuestas.comentario, pu_seguimientos_propuestas.estado, pu_seguimientos_propuestas.archivo, pu_seguimientos_propuestas.id_propuesta, id]
+    +'fecha =$2, comentario =$3, estado =$4, archivo =$5, id_propuesta =$6 WHERE id = $7;';
+    let valores = [seguimiento.id_tarea, seguimiento.fecha, seguimiento.comentario, seguimiento.estado, seguimiento.archivo, seguimiento.id_propuesta, id]
     let respuesta = await _servicio.ejecutarSql(sql, valores);
     
     return respuesta;
@@ -93,4 +104,4 @@ let eliminarSeguimiento = async (id) => {
 
 // exportar los metodos para ser usados en otros archivos
 
-module.exports = { validarSeguimiento, guardarSeguimiento, consultarSeguimiento, eliminarSeguimiento,editarSeguimiento };
+module.exports = { validarSeguimiento, guardarSeguimiento, consultarSeguimiento, eliminarSeguimiento,editarSeguimiento};
