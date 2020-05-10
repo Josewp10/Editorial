@@ -23,27 +23,23 @@ router.get("/seguimiento", async (req, res) => {
 //Guardamos 
 
 router.post("/seguimiento", (req, res) => {
-    try {
-        let info_seguimiento = req.body;
-        console.log("INFO: "+info_seguimiento);
-        validarSeguimiento(info_seguimiento);
-        console.log("valido la info");
+  try {
+      let info_seguimiento = req.body;
 
-        
-        
-        guardarSeguimiento(info_seguimiento)
-            .then(respuestaDB => {
-                console.log("entro");
-                
-                res.send({ ok: true, mensaje: "Seguimiento guardado", info: info_seguimiento });
-            })
-            .catch(error => {
-                console.log("Pille el error:"+error);
-                res.send(error);
-            });
-    } catch (error) {
-        res.send(error);
-    }
+      validarSeguimiento(info_seguimiento);
+
+      guardarSeguimiento(info_seguimiento)
+          .then(respuestaDB => {
+              console.log("entro");
+              
+              res.send({ ok: true, mensaje: "Tarea guardada", info: info_seguimiento });
+          })
+          .catch(error => {
+              res.send(error);
+          });
+  } catch (error) {
+      res.send(error);
+  }
 
 });
 
@@ -66,7 +62,7 @@ router.delete("/seguimiento/:id", (req, res) => {
   //Actualizar
 
  
-router.put("/seguimiento/:id", (req, res) => {
+  router.put("/seguimiento/:id", (req, res) => {
     try {
       //Capturar el body desde la solicitud
       let id = req.params.id;
@@ -75,7 +71,7 @@ router.put("/seguimiento/:id", (req, res) => {
       // Actualiza el usuario en base de datos
       editarSeguimiento(info_seguimiento, id)
         .then(respuestaDB => {
-          res.send({ ok: true, mensaje: "Seguimiento editado", info: info_tarea });
+          res.send({ ok: true, mensaje: "seguimiento editada", info: info_seguimiento });
         })
         .catch(error => {
           res.send(error);
