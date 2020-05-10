@@ -1,20 +1,17 @@
 const express = require("express");
 const router = express.Router();
-
-
-
-
-const _controlador = require("../controllers/obra");
+const { validarTarea,
+    guardarTarea,
+    consultarobra,eliminarTarea,editarTarea } = require("../controllers/obra");
 
 
 
 router.get("/obra", async (req, res) => {
-    let info_obra = await req.body;
-    _controlador
-        .consultar(info_obra)
-        .then((obraDB) => {
+    let info_obras = await req.body;
+    consultarobra(info_obras)
+        .then(obraDB => {
             let obra = obraDB.rows;
-            res.send({ ok: true, info: obra, mensaje: "Obras consultadas" });
+            res.send({ ok: true, info: obra, mensaje: "obra consultadas" });
         })
         .catch((error) => {
             res.send(error);
@@ -23,17 +20,19 @@ router.get("/obra", async (req, res) => {
 
 //Guardamos 
 
-router.post("/obra", async (req, res) => {
-
+router.post("/obra", (req, res) => {
     try {
-        let info = await req.body;
-        _controlador.validar(info);
-        _controlador
-            .guardar(info)
-            .then((obraDB) => {
-                res.send({ ok: true, mensaje: "Obra registrada correctamente", info: info });
+        let info_obra = req.body;
+
+        validarTarea(info_obra);
+
+        guardarTarea(info_obra)
+            .then(respuestaDB => {
+                console.log("entro");
+                
+                res.send({ ok: true, mensaje: "Tarea guardada", info: info_obra });
             })
-            .catch((error) => {
+            .catch(error => {
                 res.send(error);
             });
     } catch (error) {
@@ -43,21 +42,46 @@ router.post("/obra", async (req, res) => {
 });
 
 
-   //Eliminar
-   
-   router.delete("/obra", async (req, res) => {
-    let info_obra = await req.body;
-    _controlador
-      .eliminar(info_obra)
-      .then((obraDB) => {
-        let reg = obraDB;
-        res.send({ ok: true, info: reg, mensaje: "Obra eliminada" });
+//Eliminar
+
+
+router.delete("/obra/:id", (req, res) => {
+    let id = req.params.id;
+    eliminarTarea(id)
+      .then((respuestaDB) => {
+        console.log("LOLO")
+        res.send({ ok: true,  mensaje: "Tarea eliminada", info: {id} });
       })
       .catch((error) => {
         res.send(error);
       });
-  
   });
+  
+  //Actualizar
+
+ 
+router.put("/obra/:id", (req, res) => {
+    try {
+      //Capturar el body desde la solicitud
+      let id = req.params.id;
+      let info_obra = req.body;
+  
+      // Actualiza el usuario en base de datos
+      editarTarea(info_obra, id)
+        .then(respuestaDB => {
+          res.send({ ok: true, mensaje: "Tarea editada", info: info_obra });
+        })
+        .catch(error => {
+          res.send(error);
+        });
+  
+      // Responder
+    } catch (error) {
+      res.send(error);
+    }
+    
+  });
+
 
 //Exportación del router
 
