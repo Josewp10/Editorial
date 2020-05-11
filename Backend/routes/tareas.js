@@ -2,13 +2,13 @@ const express = require("express");
 const router = express.Router();
 const { validarTarea,
     guardarTarea,
-    consultarTareas,eliminarTarea,editarTarea } = require("../controllers/tareas");
+    consultarTareas,consultarTarea,eliminarTarea,editarTarea } = require("../controllers/tareas");
 
 
-
+//Trae todas las tareas dentro de la base de datos
 router.get("/tareas", async (req, res) => {
     let info_tareas = await req.body;
-    consultarTareas(info_tareas)
+    consultarTareas()
         .then(tareasDB => {
             let tareas = tareasDB.rows;
             res.send({ ok: true, info: tareas, mensaje: "Tareas consultadas" });
@@ -16,6 +16,21 @@ router.get("/tareas", async (req, res) => {
         .catch((error) => {
             res.send(error);
         });
+});
+
+//Trae una tarea filtrada por el Id
+router.get("/tareas/:id", async (req, res) => {
+  let id = req.params.id;
+  
+  consultarTarea(id)
+      .then(tareasDB => {
+          let tareas = tareasDB.rows;
+          res.send({ ok: true, info: tareas, mensaje: "Tarea consultada" });
+      })
+      .catch((error) => {
+        console.log(error);
+          res.send(error);
+      });
 });
 
 //Guardamos 

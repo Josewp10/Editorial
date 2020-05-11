@@ -2,15 +2,15 @@ const express = require("express");
 const router = express.Router();
 const {validarSeguimiento,
     guardarSeguimiento,
-    consultarSeguimiento,
+    consultarSeguimiento, consultarSeguimientos,
     eliminarSeguimiento,
     editarSeguimiento } = require("../controllers/seguimiento");
 
 
-
+//Trae todos los seguimientos
 router.get("/seguimiento", async (req, res) => {
     let info_seguimiento = await req.body;
-    consultarSeguimiento(info_seguimiento)
+    consultarSeguimientos(info_seguimiento)
         .then(seguimientoDB => {
             let seguimiento = seguimientoDB.rows;
             res.send({ ok: true, info: seguimiento, mensaje: "Seguimientos consultados" });
@@ -19,6 +19,20 @@ router.get("/seguimiento", async (req, res) => {
             res.send(error);
         });
 });
+
+//Trae un seguimiento filtrado por el Id
+router.get("/seguimiento/:id", async (req, res) => {
+  let id = req.params.id;
+  consultarSeguimiento(id)
+      .then(seguimientoDB => {
+          let seguimiento = seguimientoDB.rows;
+          res.send({ ok: true, info: seguimiento, mensaje: "Seguimiento consultado" });
+      })
+      .catch((error) => {
+          res.send(error);
+      });
+});
+
 
 //Guardamos 
 

@@ -36,11 +36,17 @@ let guardarTarea = async (pu_tareas) => {
 
 let consultarTareas = async (tareas) => {
     let _servicio = new ServicioPg();
-    let sql = `SELECT * FROM pu_tareas ORDER BY pu_tareas.id`;
+    let sql = `SELECT id, nombre, descripcion, modulo FROM pu_tareas ORDER BY pu_tareas.id`;
     let respuesta = await _servicio.ejecutarSql(sql);
     return respuesta;
 };
 
+let consultarTarea = async (id) => {
+    let _servicio = new ServicioPg();
+    let sql = `SELECT id, nombre, descripcion, modulo FROM pu_tareas WHERE pu_tareas.id = $1`;
+    let respuesta = await _servicio.ejecutarSql(sql, [id]);
+    return respuesta;
+};
 
 let eliminarTarea = async (id) => {
     let _servicio = new ServicioPg();
@@ -70,4 +76,4 @@ let eliminarTarea = async (id) => {
 
 // exportar los metodos para ser usados en otros archivos
 
-module.exports = { validarTarea, guardarTarea, consultarTareas, eliminarTarea,editarTarea };
+module.exports = { validarTarea, guardarTarea, consultarTareas,consultarTarea, eliminarTarea,editarTarea };
