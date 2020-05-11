@@ -85,6 +85,7 @@ export default {
                     .then(response => {
                         this.lista_seguimiento.push(response.data.info);
                         alert(lista_seguimiento);
+                        //lista de seguimientos
                         this.seguimiento = {
                             id: "",
                             id_tarea: "",
