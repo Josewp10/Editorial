@@ -32,7 +32,7 @@ router.post("/seguimiento", (req, res) => {
           .then(respuestaDB => {
               console.log("entro");
               
-              res.send({ ok: true, mensaje: "Tarea guardada", info: info_seguimiento });
+              res.send({ ok: true, mensaje: "Seguimiento guardado", info: info_seguimiento });
           })
           .catch(error => {
               res.send(error);

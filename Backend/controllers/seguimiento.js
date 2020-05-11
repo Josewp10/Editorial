@@ -27,7 +27,7 @@ let validarSeguimiento = seguimiento => {
             ok: false,
             mensaje: "El comentario del seguimiento"
         };
-    } else if (!pu_seguimiento_propuestas.estado) {
+    } else if (!seguimiento.estado) {
         throw {
             ok: false,
             mensaje: "El estado del seguimiento"
