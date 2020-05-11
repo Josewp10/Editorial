@@ -28,18 +28,15 @@ let validarTarea = tareas => {
 let guardarTarea = async (pu_tareas) => {
     let _servicio = new ServicioPg();
     let sql = `INSERT INTO public.pu_tareas(
-        id, nombre, descripcion, modulo) VALUES (
-                    '${pu_tareas.id}',
-                    '${pu_tareas.nombre}',
-                    '${pu_tareas.descripcion}',
-                    '${pu_tareas.modulo}');`;
-    let respuesta = await _servicio.ejecutarSql(sql);
+        id, nombre, descripcion, modulo) VALUES ($1,$2,$3,$4);`;
+    let valores = [pu_tareas.id,pu_tareas.nombre,pu_tareas.descripcion,pu_tareas.modulo]
+    let respuesta = await _servicio.ejecutarSql(sql, valores);
     return respuesta;
 };
 
 let consultarTareas = async (tareas) => {
     let _servicio = new ServicioPg();
-    let sql = `SELECT * FROM pu_tareas `;
+    let sql = `SELECT * FROM pu_tareas ORDER BY pu_tareas.id`;
     let respuesta = await _servicio.ejecutarSql(sql);
     return respuesta;
 };

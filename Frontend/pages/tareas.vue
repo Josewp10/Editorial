@@ -14,18 +14,26 @@
                 <b-form-input
                   class="form-control"
                   type="number"
+                  required
                   v-model="pu_tarea.id"
                   placeholder="Ingrese Id de la Tarea"
                   id="id"
                 />
+                 <b-form-invalid-feedback :state="validacionId"
+                >Campo obligatorio</b-form-invalid-feedback
+              >
               </b-form-group>
               <b-form-group label="Nombre" label-for="nombre">
                 <b-form-input
                   class="form-control"
                   v-model="pu_tarea.nombre"
+                  required
                   placeholder="Ingrese Nombre de la Tarea"
                   id="nombre"
                 />
+                 <b-form-invalid-feedback :state="validacionNombre"
+                >Campo obligatorio</b-form-invalid-feedback
+              >
               </b-form-group>
 
               <b-form-group label="Descripción" label-for="descripcion">
@@ -36,6 +44,9 @@
                   required
                   placeholder="Ingrese Descripción de la tarea"
                 />
+                 <b-form-invalid-feedback :state="validaciondescripcion"
+                >Campo obligatorio</b-form-invalid-feedback
+              >
               </b-form-group>
 
               <b-form-group label="Módulo" label-for="modulo">
@@ -57,7 +68,7 @@
           <b-table striped hover :items="lista_tareas"  v-show="showTable">
             <template v-slot:cell(acciones)="row">
               <b-button size="sm" @click="cargarTarea(row)" class="mr-2" variant="danger">Modificar</b-button>
-              <b-button size="sm" @click="eliminarTarea(row)" class="mr-2">Eliminar</b-button>
+              <b-button size="sm" @click="eliminarTareas(row)" class="mr-2">Eliminar</b-button>
             </template>
           </b-table>
         </b-col>

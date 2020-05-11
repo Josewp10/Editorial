@@ -80,6 +80,7 @@ export default {
         },
         crearSeguimiento() {
             if (this.validacion == true) {
+                alert("entro al cosito")
                 axios
                     .post("http://127.0.0.1:3001/seguimiento", this.seguimiento)
                     .then(response => {

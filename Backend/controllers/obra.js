@@ -45,27 +45,28 @@ let validarObra = obra => {
 };
 
 
-let guardarObra = async (pu_propuestas_publicaciones) => {
+let guardarObra = async (obra) => {
     let _servicio = new ServicioPg();
     let sql = `INSERT INTO public.pu_propuestas_publicaciones(
         titulo, facultad, tipo_publicacion, area, resenia_autores, resumen,
         aspectos_novedosos, contribucion_area, publico_objetivo, datos_proyecto_asociado,
         forma_ajusta_mision_udem, observaciones_finales, id)
-        VALUES (
-                    '${pu_propuestas_publicaciones.titulo}','${pu_propuestas_publicaciones.facultad}',
-                    '${pu_propuestas_publicaciones.tipo_publicacion}','${pu_propuestas_publicaciones.area}',
-                    '${pu_propuestas_publicaciones.resenia_autores}','${pu_propuestas_publicaciones.resumen}',
-                    '${pu_propuestas_publicaciones.aspectos_novedosos}','${pu_propuestas_publicaciones.contribucion_area}',
-                    '${pu_propuestas_publicaciones.publico_objetivo}','${pu_propuestas_publicaciones.datos_proyecto_asociado}',
-                    '${pu_propuestas_publicaciones.forma_ajusta_mision_udem}','${pu_propuestas_publicaciones.observaciones_finales}',
-                    '${pu_propuestas_publicaciones.id}');`;
-    let respuesta = await _servicio.ejecutarSql(sql);
+        VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13);`;
+    let valores = [obra.titulo, obra.facultad, obra.tipo_publicacion,
+            obra.area,obra.resenia_autores,obra.resumen,obra.aspectos_novedosos,
+            obra.contribucion_area,obra.publico_objetivo,obra.datos_proyecto_asociado,
+            obra.forma_ajusta_mision_udem,obra.observaciones_finales,obra.id];
+    let respuesta = await _servicio.ejecutarSql(sql, valores);
     return respuesta;
 };
 
 let consultarObra = async () => {
     let _servicio = new ServicioPg();
-    let sql = `SELECT * FROM public.pu_propuestas_publicaciones`;
+    let sql = `SELECT pu_propuestas_publicaciones.id AS "id obra",titulo,CONCAT(nombre,' ',apellidos)AS Autor, facultad,tipo_publicacion, area 
+                FROM public.pu_autores_publicaciones
+                INNER JOIN public.acc_usuarios on public.pu_autores_publicaciones.id_autor = public.acc_usuarios.id
+                INNER JOIN public.pu_propuestas_publicaciones on public.pu_autores_publicaciones.id_publicacion=public.pu_propuestas_publicaciones.id 
+                ORDER BY pu_propuestas_publicaciones.id`; 
     let respuesta = await _servicio.ejecutarSql(sql);
     return respuesta;
 };

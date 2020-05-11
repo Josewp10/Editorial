@@ -22,13 +22,13 @@ export default {
   },
   computed: {
     validacionId() {
-      return this.condicion(this.pu_tarea.id.length > 0)
+      return this.validar_condicion(this.pu_tarea.id.length > 0)
     },
     validacionNombre() {
-      return this.condicion(this.pu_tarea.nombre.length > 0)
+      return this.validar_condicion(this.pu_tarea.nombre.length > 0)
     },
     validaciondescripcion() {
-      return this.condicion(this.pu_tarea.descripcion.length > 0)
+      return this.validar_condicion(this.pu_tarea.descripcion.length > 0)
     }
   },
   methods: {
@@ -88,11 +88,11 @@ export default {
      */
     eliminarTareas({ item }) {
       axios
-        .delete(`http://127.0.0.1:3000/tareas/${item.id}`)
+        .delete(`http://127.0.0.1:3001/tareas/${item.id}`)
         .then(response => {
 
           let posicion = this.lista_tareas.findIndex(
-            pu_tarea => pu_tarea.id == item.id
+           lista_tareas => lista_tareas.id == item.id
           );
           this.lista_tareas.splice(posicion, 1);
 
@@ -109,8 +109,8 @@ export default {
      */
     cargarTarea({ item }) {
       axios
-      .get(`http://127.0.0.1:3000/tareas/${item.id}`)
-      .then((response) => {
+      .get(`http://127.0.0.1:3001/tareas/${item.id}`)
+      .then(response => {
         var array = response.data.info;
 
         this.enEdicion = true;
@@ -123,18 +123,19 @@ export default {
       .catch((error) => {
         console.log(error);
       });
-
     },
     /**
      * Método que actualiza un elemento tomando como base el identificadorde este
      * y luego actualiza en el localStorage
      */
-    actualizarTarea(item) {
+    actualizarTarea() {
+      alert("este carga")
       if (this.validacion == true) {
+        alert("entro al cosito jeje")
         axios
-          .put(`http://127.0.0.1:3001/tareas/${this.tareas.id}`, this.pu_tarea)
+          .put(`http://127.0.0.1:3001/tareas/${this.pu_tarea.id}`, this.pu_tarea)
           .then((response) => {
-            let posicion = this.lista_roles.findIndex(
+            let posicion = this.lista_tareas.findIndex(
               (pu_tarea) => pu_tarea.id == this.pu_tarea.id
             );
             this.lista_tareas.splice(posicion, 1, this.pu_tarea);
