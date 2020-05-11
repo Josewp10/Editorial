@@ -1,7 +1,7 @@
 
 const nodemailer = require("nodemailer");
 
-/*class ServicioCorreo {
+class ServicioCorreo {
   constructor() {}
 
   async enviarCorreo(plantilla, destinatarios) {
@@ -34,4 +34,4 @@ const nodemailer = require("nodemailer");
   }
 }
 
-module.exports = ServicioCorreo;*/
+module.exports = ServicioCorreo;

@@ -62,7 +62,7 @@ let guardarSeguimiento = async (seguimiento) => {
     return respuesta;
 };
 
-let consultarSeguimiento = async (pu_seguimientos_propuestas) => {
+let consultarSeguimientos = async () => {
     let _servicio = new ServicioPg();
     let sql = `SELECT id, id_tarea, fecha, comentario, estado, archivo, id_propuesta
 	            FROM public.pu_seguimientos_propuestas ORDER BY pu_seguimientos_propuestas.id;`;
@@ -70,6 +70,13 @@ let consultarSeguimiento = async (pu_seguimientos_propuestas) => {
     return respuesta;
 };
 
+let consultarSeguimiento = async (id) => {
+    let _servicio = new ServicioPg();
+    let sql = `SELECT id, id_tarea, fecha, comentario, estado, archivo
+	            FROM public.pu_seguimientos_propuestas WHERE pu_seguimientos_propuestas.id = $1;`;
+    let respuesta = await _servicio.ejecutarSql(sql, [id]);
+    return respuesta;
+};
 
 let eliminarSeguimiento = async (id) => {
     let _servicio = new ServicioPg();
@@ -101,4 +108,4 @@ let eliminarSeguimiento = async (id) => {
 
 // exportar los metodos para ser usados en otros archivos
 
-module.exports = { validarSeguimiento, guardarSeguimiento, consultarSeguimiento, eliminarSeguimiento,editarSeguimiento};
+module.exports = { validarSeguimiento, guardarSeguimiento, consultarSeguimiento,consultarSeguimientos, eliminarSeguimiento,editarSeguimiento};
