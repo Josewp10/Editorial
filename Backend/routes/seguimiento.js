@@ -30,8 +30,6 @@ router.post("/seguimiento", (req, res) => {
 
       guardarSeguimiento(info_seguimiento)
           .then(respuestaDB => {
-              console.log("entro");
-              
               res.send({ ok: true, mensaje: "Seguimiento guardado", info: info_seguimiento });
           })
           .catch(error => {

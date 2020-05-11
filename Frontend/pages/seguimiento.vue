@@ -6,7 +6,7 @@
         <b-col>
           <b-card title="Gestión de seguimiento">
             <b-img left="3px" src="@/static/images/question.png" width="80" height="80"></b-img>
-            <b-card-text>A continuación selecione la tarea revisada y en el estado que se encuentra:</b-card-text>
+            <b-card-text>El sello editorial realizara...:</b-card-text>
 
             <b-form action="javascript:void(0)" @submit="crearSeguimiento()">
               <br />
@@ -15,6 +15,7 @@
                 <b-form-input
                   class="form-control"
                   type="number"
+                  required
                   v-model="seguimiento.id"
                   placeholder="Ingrese Id Seguimiento"
                   id="id"
@@ -22,20 +23,30 @@
               </b-form-group>
 
               <b-form-group label="Tareas">
-                <b-form-select
-                  v-model="seguimiento.tareas"
-                  :options="opciones_listaTarea"
-                  placeholder="Tareas"
-                ></b-form-select>
+                <b-form-input
+                  class="form-control"
+                  type="number"
+                  required
+                  v-model="seguimiento.id_tarea"
+                  placeholder="Ingrese Id Tarea"
+                  id="id"
+                />
                 <br />
               </b-form-group>
 
               <b-form-group label="Fecha">
-                <b-form-input v-model="text" placeholder="Fecha" type="date"></b-form-input>
+                <b-form-input v-model="seguimiento.fecha" required placeholder="Fecha" type="date"></b-form-input>
               </b-form-group>
 
               <b-form-group label="Estado">
-                <b-form-select v-model="seguimiento.estado" :options="opciones_estados"></b-form-select>
+                <b-form-input
+                  class="form-control"
+                  type="text"
+                  required
+                  v-model="seguimiento.estado"
+                  placeholder="Ingrese Estado de la propuesta"
+                  id="id"
+                />
               </b-form-group>
 
               <b-form-file class="mt-3" plain></b-form-file>
@@ -123,4 +134,5 @@
   </div>
 </template>
 
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="../assets/seguimiento.js"/>
