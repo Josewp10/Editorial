@@ -12,8 +12,8 @@ app.get("/", (req, res)=>{
   res.send('Bienvenido al proyecto de gestión de tareas')
 })
 ///Importarlas rutas
-//const ruta_obra = require("./routes/obra")
-//app.use(rutas_obra);
+const ruta_obra = require("./routes/obra")
+app.use(ruta_obra);
 
 const ruta_seguimiento = require("./routes/seguimiento")
 app.use(ruta_seguimiento);
