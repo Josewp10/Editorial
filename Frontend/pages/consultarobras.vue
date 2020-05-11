@@ -17,7 +17,7 @@
 
         <b-col>
           <br />
-          <b-table striped hover :items="lista_obras">
+          <b-table striped hover :items="lista_obra">
             <template v-slot:cell(acciones)="row">
               <b-button href="/seguimiento" size="sm" class="mr-2" variant="link"><b-img center="" src="@/static/images/revisar.png" width="40" height="40"></b-img>Revisar</b-button>
             </template>
@@ -28,4 +28,5 @@
   </div>
 </template>
 
-<script src="../assets/consultarobras.js"/>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="../assets/obras.js"/>
