@@ -16,7 +16,8 @@ export default {
                 acciones: true
             },
             lista_seguimiento: [],
-            lista_busqueda: []
+            lista_busqueda: [],
+            obra: []
         };
     },
     mounted() {
@@ -31,25 +32,25 @@ export default {
     },
     computed: {
         validacionId() {
-            return this.condicion(this.seguimiento.id.length > 0)
+            return this.validar_condicion(this.seguimiento.id.length > 0)
         },
         validacionIdTarea() {
-            return this.condicion(this.seguimiento.id_tarea.length > 0)
+            return this.validar_condicion(this.seguimiento.id_tarea.length > 0)
         },
         validacionFecha() {
-            return this.condicion(this.seguimiento.fecha.length > 0)
+            return this.validar_condicion(this.seguimiento.fecha.length > 0)
         },
         validacionComentario() {
-            return this.condicion(this.seguimiento.comentario.length > 0)
+            return this.validar_condicion(this.seguimiento.comentario.length > 0)
         },
         validacionEstado() {
-            return this.condicion(this.seguimiento.estado.length > 0)
+            return this.validar_condicion(this.seguimiento.estado.length > 0)
         },
         validacionArchivo() {
-            return this.condicion(this.seguimiento.archivo.length > 0)
+            return this.validar_condicion(this.seguimiento.archivo.length > 0)
         },
         validacionIdPropuesta() {
-            return this.condicion(this.seguimiento.id_propuesta.length > 0)
+            return this.validar_condicion(this.seguimiento.id_propuesta.length > 0)
         }
     },
     methods: {
@@ -72,6 +73,20 @@ export default {
                         this.lista_seguimiento[i].acciones = true;
                     }
                     console.log(lista_seguimiento);
+                    //this.enEdicion = true;
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        },
+        mostrarObra(){
+            axios
+                .get("http://127.0.0.1:3001/obra")
+                .then(response => {
+                    console.log(response);
+                    this.obra = response.data.info.titulo;
+                
+                    console.log(obra);
                     //this.enEdicion = true;
                 })
                 .catch(error => {
@@ -123,6 +138,9 @@ export default {
                 .catch(error => {
                     console.log(error);
                 });
+        },
+        limpiarCampos(){
+
         },
         cargarSeguimiento({ item }) {
             axios

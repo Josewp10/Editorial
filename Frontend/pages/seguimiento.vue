@@ -4,7 +4,8 @@
     <b-container class="bv-example-row mb-3">
       <b-row cols="2">
         <b-col>
-          <b-card title="Gestión de seguimiento">
+          <b-card title="Gestión de seguimiento a la obra: ">
+            <b><p>Esta</p></b>
             <b-img left="3px" src="@/static/images/question.png" width="80" height="80"></b-img>
             <b-card-text>El sello editorial realizara...:</b-card-text>
 
@@ -20,22 +21,30 @@
                   placeholder="Ingrese Id Seguimiento"
                   id="id"
                 />
+                 <b-form-invalid-feedback :state="validacionId"
+                >Campo obligatorio</b-form-invalid-feedback
+              >
               </b-form-group>
 
-              <b-form-group label="Tareas">
+              <b-form-group label="Tarea">
                 <b-form-input
                   class="form-control"
                   type="number"
                   required
                   v-model="seguimiento.id_tarea"
                   placeholder="Ingrese Id Tarea"
-                  id="id"
+                  id="id_tarea"
                 />
-                <br />
+                 <b-form-invalid-feedback :state="validacionIdTarea"
+                >Campo obligatorio</b-form-invalid-feedback
+              >
               </b-form-group>
 
               <b-form-group label="Fecha">
                 <b-form-input v-model="seguimiento.fecha" required placeholder="Fecha" type="date"></b-form-input>
+               <b-form-invalid-feedback :state="validacionFecha"
+                >Campo obligatorio</b-form-invalid-feedback
+              >
               </b-form-group>
 
               <b-form-group label="Estado">
@@ -45,12 +54,40 @@
                   required
                   v-model="seguimiento.estado"
                   placeholder="Ingrese Estado de la propuesta"
-                  id="id"
+                  id="estado"
                 />
+               <b-form-invalid-feedback :state="validacionEstado"
+                >Campo obligatorio</b-form-invalid-feedback
+              >
               </b-form-group>
 
-              <b-form-file class="mt-3" plain></b-form-file>
-              <br />
+                <b-form-group label="Propuesta">
+                <b-form-input
+                  class="form-control"
+                  type="text"
+                  required
+                  v-model="seguimiento.id_propuesta"
+                  placeholder="Seleccione la propuesta"
+                  id="estado"
+                />
+               <b-form-invalid-feedback :state="validacionIdPropuesta"
+                >Campo obligatorio</b-form-invalid-feedback
+              >
+              </b-form-group>
+
+               <b-form-group label="Archivo">
+                <b-form-input
+                  class="form-control"
+                  type="text"
+                  required
+                  v-model="seguimiento.archivo"
+                  placeholder="Seleccione el archivo"
+                  id="estado"
+                />
+               <b-form-invalid-feedback :state="validacionArchivo"
+                >Campo obligatorio</b-form-invalid-feedback
+              >
+              </b-form-group>
 
               <b-form-textarea
                 v-model="seguimiento.comentario"
@@ -58,7 +95,9 @@
                 size="lg"
                 placeholder="Comentario"
               ></b-form-textarea>
-
+               <b-form-invalid-feedback :state="validacionComentario"
+                >Campo obligatorio</b-form-invalid-feedback
+              >
               <br />
 
               <b-button type="submit" variant="danger" v-if="!enEdicion">Crear Seguimiento</b-button>

@@ -64,11 +64,12 @@ let guardarSeguimiento = async (seguimiento) => {
 
 let consultarSeguimiento = async (pu_seguimientos_propuestas) => {
     let _servicio = new ServicioPg();
-    let sql = `SELECT id, id_tarea, fecha, comentario, estado, archivo
+    let sql = `SELECT id, id_tarea, fecha, comentario, estado, archivo, id_propuesta
 	            FROM public.pu_seguimientos_propuestas ORDER BY pu_seguimientos_propuestas.id;`;
     let respuesta = await _servicio.ejecutarSql(sql);
     return respuesta;
 };
+
 
 let eliminarSeguimiento = async (id) => {
     let _servicio = new ServicioPg();
