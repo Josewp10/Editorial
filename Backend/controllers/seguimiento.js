@@ -50,25 +50,22 @@ let validarSeguimiento = seguimiento => {
 };
 
 
-let guardarSeguimiento = async (pu_seguimientos_propuestas) => {
+let guardarSeguimiento = async (seguimiento) => {
     let _servicio = new ServicioPg();
     let sql = `INSERT INTO public.pu_seguimientos_propuestas (
-        id, id_tarea, fecha, comentario, estado, archivo, id_propuesta) VALUES (
-                    '${pu_seguimientos_propuestas.id}',
-                    '${pu_seguimientos_propuestas.id_tarea}',
-                    '${pu_seguimientos_propuestas.fecha}',
-                    '${pu_seguimientos_propuestas.comentario}',
-                    '${pu_seguimientos_propuestas.estado}',
-                    '${pu_seguimientos_propuestas.archivo}',
-                    '${pu_seguimientos_propuestas.id_propuesta}');`;
-    let respuesta = await _servicio.ejecutarSql(sql);
+        id, id_tarea, fecha, comentario, estado, archivo, id_propuesta) 
+            VALUES ($1,$2,$3,$4,$5,$6,$7);`;
+            let valores = [seguimiento.id,seguimiento.id_tarea, seguimiento.fecha, 
+                        seguimiento.comentario, seguimiento.estado,
+                        seguimiento.archivo, seguimiento.id_propuesta]
+    let respuesta = await _servicio.ejecutarSql(sql, valores);
     return respuesta;
 };
 
 let consultarSeguimiento = async (pu_seguimientos_propuestas) => {
     let _servicio = new ServicioPg();
     let sql = `SELECT id, id_tarea, fecha, comentario, estado, archivo
-	            FROM public.pu_seguimientos_propuestas;`;
+	            FROM public.pu_seguimientos_propuestas ORDER BY pu_seguimientos_propuestas.id;`;
     let respuesta = await _servicio.ejecutarSql(sql);
     return respuesta;
 };
