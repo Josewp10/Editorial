@@ -4,7 +4,7 @@ const {validarSeguimiento,
     guardarSeguimiento,
     consultarSeguimiento, consultarSeguimientos,
     eliminarSeguimiento,
-    editarSeguimiento } = require("../controllers/seguimiento");
+    editarSeguimiento} = require("../controllers/seguimiento");
 
 
 //Trae todos los seguimientos
@@ -33,6 +33,18 @@ router.get("/seguimiento/:id", async (req, res) => {
       });
 });
 
+//Trae el titulo de la propuesta
+router.get("/seguimiento", async (req, res) => {
+  let titulo = await req.body;
+  consultarPropuesta(titulo)
+      .then(tituloDB => {
+          let seguimientoTitulo = tituloDB.rows;
+          res.send({ ok: true, info: seguimientoTitulo, mensaje: "Nombre Tarea Consultada" });
+      })
+      .catch((error) => {
+          res.send(error);
+      });
+});
 
 //Guardamos 
 

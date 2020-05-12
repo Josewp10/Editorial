@@ -7,7 +7,7 @@ export default {
             enEdicion: false,
             seguimiento: {
                 id: "",
-                id_tarea: "",
+                tareas: "",
                 fecha: "",
                 comentario: "",
                 estado: "",
@@ -16,26 +16,19 @@ export default {
                 acciones: true
             },
             lista_seguimiento: [],
-            lista_busqueda: [],
-            obra: []
+            lista_tareas: []
         };
-    },
-    mounted() {
-        this.lista_busqueda.push({
-            id: "001",
-            NombreObra: "Zootecnia 1",
-            estado: "Todo en orden",
-        })
     },
     created() {
         this.listarSeguimientos();
+        this.listarTareas();
     },
     computed: {
         validacionId() {
             return this.validar_condicion(this.seguimiento.id.length > 0)
         },
         validacionIdTarea() {
-            return this.validar_condicion(this.seguimiento.id_tarea.length > 0)
+            return this.validar_condicion(this.seguimiento.tareas.length > 0)
         },
         validacionFecha() {
             return this.validar_condicion(this.seguimiento.fecha.length > 0)
@@ -79,15 +72,15 @@ export default {
                     console.log(error);
                 });
         },
-        mostrarObra(){
+        listarTareas(){
             axios
-                .get("http://127.0.0.1:3001/obra")
+                .get("http://127.0.0.1:3001/obra/tareas")
                 .then(response => {
                     console.log(response);
-                    this.obra = response.data.info.titulo;
-                
-                    console.log(obra);
-                    //this.enEdicion = true;
+                    this.lista_tareas = response.data.info;
+                    
+                    //console.log(this.lista_tareas);
+                    //alert(lista_tareas)
                 })
                 .catch(error => {
                     console.log(error);
@@ -95,7 +88,6 @@ export default {
         },
         crearSeguimiento() {
             if (this.validacion == true) {
-                alert("entro al cosito")
                 axios
                     .post("http://127.0.0.1:3001/seguimiento", this.seguimiento)
                     .then(response => {
@@ -138,9 +130,6 @@ export default {
                 .catch(error => {
                     console.log(error);
                 });
-        },
-        limpiarCampos(){
-
         },
         cargarSeguimiento({ item }) {
             axios

@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { validarObra,
     guardarObra,consultarObra,
-    consultarObras,eliminarObra,editarObra } = require("../controllers/obra");
+    consultarObras,eliminarObra,editarObra, consultarTareas } = require("../controllers/obra");
 
 
 //Trae todas las obras de la base de datos
@@ -21,7 +21,19 @@ router.get("/obra", async (req, res) => {
 //Trae una obra filtrada por el id
 router.get("/obra/:id", async (req, res) => {
   let id = req.params.id;
-  consultarObra(id)
+
+    if(id == "tareas"){
+      consultarTareas()
+      .then(tareaDB => {
+          let tareas = tareaDB.rows;
+          res.send({ ok: true, info: tareas, mensaje: "Obra consultada" });
+      })
+      .catch((error) => {
+        console.log(error);
+          res.send(error);
+      });
+    }else{
+      consultarObra(id)
       .then(obraDB => {
           let obra = obraDB.rows;
           res.send({ ok: true, info: obra, mensaje: "Obra consultada" });
@@ -30,6 +42,8 @@ router.get("/obra/:id", async (req, res) => {
         console.log(error);
           res.send(error);
       });
+    }
+  
 });
 
 //Guardamos 

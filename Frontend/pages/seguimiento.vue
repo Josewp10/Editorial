@@ -5,7 +5,7 @@
       <b-row cols="2">
         <b-col>
           <b-card title="Gestión de seguimiento a la obra: ">
-            <b><p>Esta</p></b>
+            <b><p>Aqui</p></b>
             <b-img left="3px" src="@/static/images/question.png" width="80" height="80"></b-img>
             <b-card-text>El sello editorial realizara...:</b-card-text>
 
@@ -27,14 +27,8 @@
               </b-form-group>
 
               <b-form-group label="Tarea">
-                <b-form-input
-                  class="form-control"
-                  type="number"
-                  required
-                  v-model="seguimiento.id_tarea"
-                  placeholder="Ingrese Id Tarea"
-                  id="id_tarea"
-                />
+                  <b-form-select v-model="seguimiento.tareas" :options="lista_tareas" ></b-form-select>
+              <br/> 
                  <b-form-invalid-feedback :state="validacionIdTarea"
                 >Campo obligatorio</b-form-invalid-feedback
               >

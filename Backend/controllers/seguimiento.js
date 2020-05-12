@@ -86,8 +86,6 @@ let eliminarSeguimiento = async (id) => {
     return respuesta;
   };
   
-
- 
   let editarSeguimiento = async (seguimiento, id) => {
     if(seguimiento.id != id){
         throw {

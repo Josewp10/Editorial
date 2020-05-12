@@ -60,6 +60,21 @@ let guardarObra = async (obra) => {
     return respuesta;
 };
 
+/*
+let consultarPropuesta = async () => {
+    let _servicio = new ServicioPg();
+    let sql = `SELECT titulo ORDER BY pu_propuestas_publicaciones.id;`;
+    let respuesta = await _servicio.ejecutarSql(sql);
+    return respuesta;
+};*/
+
+let consultarTareas= async () => {
+    let _servicio = new ServicioPg();
+    let sql = `SELECT id, nombre FROM public.pu_tareas ORDER BY pu_tareas.id;`;
+    let respuesta = await _servicio.ejecutarSql(sql);
+    return respuesta;
+};
+
 let consultarObras = async () => {
     let _servicio = new ServicioPg();
     let sql = `SELECT pu_propuestas_publicaciones.id AS "id obra",titulo,CONCAT(nombre,' ',apellidos)AS Autor, facultad,tipo_publicacion, area 
@@ -120,4 +135,4 @@ let eliminarObra = async (id) => {
 
 // exportar los metodos para ser usados en otros archivos
 
-module.exports = { validarObra, guardarObra, consultarObras,consultarObra, eliminarObra,editarObra };
+module.exports = { validarObra, guardarObra, consultarObras,consultarObra, eliminarObra,editarObra, consultarTareas };
