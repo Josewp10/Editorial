@@ -19,7 +19,7 @@
         <b-col>
           <b-card title="Gestión de seguimiento a la obra: ">
             <b>
-              <p>Aqui</p>
+              <p>"Nombre Propuesta"</p>
             </b>
             <b-img left="3px" src="@/static/images/question.png" width="80" height="80"></b-img>
             <b-card-text>El sello editorial realizara...:</b-card-text>

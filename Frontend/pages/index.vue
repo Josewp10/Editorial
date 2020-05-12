@@ -18,7 +18,7 @@
             </b-button>
             <br>
             <br>
-            <b-button href="/consultarobras" variant="outline-danger">
+            <b-button  variant="outline-danger"  @click="generarPdf()">
               <b-img center src="@/static/images/smartphone.png" width="110" height="110"></b-img>Reportes
             </b-button>
           </b-col>
@@ -31,4 +31,7 @@
     </div>
   </div>
 </template>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="../assets/reporte.js"/>
 

@@ -30,6 +30,7 @@ export default {
             }
           },
         listarObras() {
+            
             axios
                 .get("http://127.0.0.1:3001/obra")
                 .then(response => {
@@ -39,6 +40,7 @@ export default {
                         this.lista_obra[i].acciones = true;
                     }
                     console.log(lista_obra);
+                    //this.$cookies.set("nombreobra", lista_obra);
                     //this.enEdicion = true;
                 })
                 .catch(error => {
@@ -47,7 +49,7 @@ export default {
         },
         almacenarObra(item){
             let obra = lista_obra[item.index].nombre
-            console.log(obra);
+            console.log(item.index);
             
             localStorage.setItem(nombreObra, obra)
         }

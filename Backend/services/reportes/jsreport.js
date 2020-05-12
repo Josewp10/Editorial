@@ -1,7 +1,7 @@
 const JSReport = require("jsreport-core")();
 const fs = require("fs");
 
-/*
+
 const crearPlantilla = (nombrePlantilla) => {
   let html = fs.readFileSync(`./templates/${nombrePlantilla}.html`).toString();
 
@@ -24,4 +24,4 @@ const crearPDF = async (data, nombrePlantilla) => {
   return resultado.content;
 };
 
-module.exports = { crearPDF };*/
+module.exports = { crearPDF };
