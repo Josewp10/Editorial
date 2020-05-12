@@ -139,11 +139,12 @@ export default {
 
                     this.enEdicion = true;
                     this.seguimiento.id = array[0].id;
-                    this.seguimiento.id_tarea = array[0].id_propuesta;
+                    this.seguimiento.id_tarea = array[0].id_tarea;
                     this.seguimiento.fecha = array[0].fecha;
                     this.seguimiento.comentario = array[0].comentario;
                     this.seguimiento.estado = array[0].estado;
                     this.seguimiento.archivo = array[0].archivo;
+                    this.seguimiento.id_propuesta = array[0].id_propuesta;
                     this.seguimiento.acciones = true;
                 })
                 .catch((error) => {
@@ -151,7 +152,7 @@ export default {
                 });
 
         },
-        actualizarSeguimiento(item) {
+        actualizarSeguimiento() {
             if (this.validacion == true) {
                 axios
                     .put(`http://127.0.0.1:3001/seguimiento/${this.seguimiento.id}`, this.seguimiento)
@@ -159,10 +160,9 @@ export default {
                         let posicion = this.lista_seguimiento.findIndex(
                             (seguimiento) => seguimiento.id == this.seguimiento.id
                         );
-                        this.lista.seguimiento.splice(posicion, 1, this.seguimiento);
+                        this.lista_seguimiento.splice(posicion, 1, this.seguimiento);
                         this.enEdicion = false;
                         this.seguimiento = {
-                            id: "",
                             id_tarea: "",
                             fecha: "",
                             comentario: "",

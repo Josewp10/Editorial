@@ -92,7 +92,7 @@ export default {
         .then(response => {
 
           let posicion = this.lista_tareas.findIndex(
-           lista_tareas => lista_tareas.id == item.id
+            lista_tareas => lista_tareas.id == item.id
           );
           this.lista_tareas.splice(posicion, 1);
 
@@ -109,29 +109,27 @@ export default {
      */
     cargarTarea({ item }) {
       axios
-      .get(`http://127.0.0.1:3001/tareas/${item.id}`)
-      .then(response => {
-        var array = response.data.info;
+        .get(`http://127.0.0.1:3001/tareas/${item.id}`)
+        .then(response => {
+          var array = response.data.info;
 
-        this.enEdicion = true;
-        this.pu_tarea.id = array[0].id;
-        this.pu_tarea.nombre = array[0].nombre;
-        this.pu_tarea.descripcion = array[0].descripcion;
-        this.pu_tarea.modulo = array[0].modulo;
-        this.pu_tarea.acciones = true;
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+          this.enEdicion = true;
+          this.pu_tarea.id = array[0].id;
+          this.pu_tarea.nombre = array[0].nombre;
+          this.pu_tarea.descripcion = array[0].descripcion;
+          this.pu_tarea.modulo = array[0].modulo;
+          this.pu_tarea.acciones = true;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
     /**
      * Método que actualiza un elemento tomando como base el identificadorde este
      * y luego actualiza en el localStorage
      */
     actualizarTarea() {
-      alert("este carga")
       if (this.validacion == true) {
-        alert("entro al cosito jeje")
         axios
           .put(`http://127.0.0.1:3001/tareas/${this.pu_tarea.id}`, this.pu_tarea)
           .then((response) => {
@@ -141,7 +139,6 @@ export default {
             this.lista_tareas.splice(posicion, 1, this.pu_tarea);
             this.enEdicion = false;
             this.pu_tarea = {
-              id: "",
               nombre: "",
               descripcion: "",
               modulo: "",

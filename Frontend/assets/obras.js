@@ -45,5 +45,11 @@ export default {
                     console.log(error);
                 });
         },
+        almacenarObra(item){
+            let obra = lista_obra[item.index].nombre
+            console.log(obra);
+            
+            localStorage.setItem(nombreObra, obra)
+        }
     }
 };

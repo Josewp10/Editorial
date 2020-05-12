@@ -64,15 +64,17 @@ let guardarSeguimiento = async (seguimiento) => {
 
 let consultarSeguimientos = async () => {
     let _servicio = new ServicioPg();
-    let sql = `SELECT id, id_tarea, fecha, comentario, estado, archivo, id_propuesta
-	            FROM public.pu_seguimientos_propuestas ORDER BY pu_seguimientos_propuestas.id;`;
+    let sql = `SELECT pu_seguimientos_propuestas.id, pu_tareas.nombre AS Tarea, fecha, comentario, estado, archivo, pu_propuestas_publicaciones.titulo
+    FROM public.pu_seguimientos_propuestas 
+    INNER JOIN pu_tareas ON pu_seguimientos_propuestas.id_tarea = pu_tareas.id
+    INNER JOIN pu_propuestas_publicaciones ON pu_seguimientos_propuestas.id_propuesta = pu_propuestas_publicaciones.id;`;
     let respuesta = await _servicio.ejecutarSql(sql);
     return respuesta;
 };
 
 let consultarSeguimiento = async (id) => {
     let _servicio = new ServicioPg();
-    let sql = `SELECT id, id_tarea, fecha, comentario, estado, archivo
+    let sql = `SELECT id, id_tarea, fecha, comentario, estado, archivo, id_propuesta
 	            FROM public.pu_seguimientos_propuestas WHERE pu_seguimientos_propuestas.id = $1;`;
     let respuesta = await _servicio.ejecutarSql(sql, [id]);
     return respuesta;

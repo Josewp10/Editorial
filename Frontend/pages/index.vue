@@ -1,34 +1,34 @@
 <template>
-  <div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <b-container>
-      <b-row align-v="center">
-        <b-col></b-col>
-        <b-col cols="6" align-self="center">
-          <b-card>
-            <b-row>
-              <b-col>
-                <b-img src="@/static/images/udem.jpg" alt="Logo UdeM"></b-img>
-              </b-col>
-            </b-row>
-            <b-form>
-              <b-form-group id="input-group-2" label="Usuario" label-for="input-2">
-                <b-form-input id="email" placeholder="someone@example.com" type="email"></b-form-input>
-              </b-form-group>
-              <b-form-group id="input-group-2" label="Contraseña" label-for="input-2">
-                <b-form-input id="contraseña" type="password"></b-form-input>
-              </b-form-group>
-              <b-button type="submit" variant="danger" href="/principal">Ingresar</b-button>
-            </b-form>
-          </b-card>
-        </b-col>
-        <b-col></b-col>
-      </b-row>
-    </b-container>
+  <div class="container">
+    <div>
+      <b-container>
+        <b-row> 
+          <b-col>
+            <br>
+            <br>
+            <br>
+
+            <b-button href="/tareas" variant="outline-danger">
+              <b-img center src="@/static/images/checklist.png" width="110" height="110"></b-img>Gestión Tareas
+            </b-button>
+            <br>
+            <br>
+            <b-button href="/consultarobras" variant="outline-primary">
+              <b-img center src="@/static/images/search.png" width="110" height="110"></b-img>Buscar Obras
+            </b-button>
+            <br>
+            <br>
+            <b-button href="/consultarobras" variant="outline-danger">
+              <b-img center src="@/static/images/smartphone.png" width="110" height="110"></b-img>Reportes
+            </b-button>
+          </b-col>
+          <b-col>
+            <br />
+            <b-img center src="@/static/images/modulo.png" width="880" height="750"></b-img>
+          </b-col>
+        </b-row>
+      </b-container>
+    </div>
   </div>
 </template>
 
