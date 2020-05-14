@@ -10,7 +10,7 @@
 
             <b-form action="javascript:void(0)" @submit="crearTareas()">
               <br />
-              <b-form-group label="Identificación" label-for="id">
+              <b-form-group label="Código" label-for="id">
                 <b-form-input
                   class="form-control"
                   type="number"
@@ -65,7 +65,9 @@
           </b-card>
         </b-col>
         <b-col>
-          <b-table striped hover :items="lista_tareas"  v-show="showTable">
+          <b-table striped
+            responsive
+            hover :items="lista_tareas"  v-show="showTable" class="border border-danger text-center">
             <template v-slot:cell(acciones)="row">
               <b-button size="sm" @click="cargarTarea(row)" class="mr-2" variant="danger">Modificar</b-button>
               <b-button size="sm" @click="eliminarTareas(row)" class="mr-2">Eliminar</b-button>

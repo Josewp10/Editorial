@@ -11,71 +11,56 @@ let validarSeguimiento = seguimiento => {
             mensaje: "El id del seguimiento"
         };
 
-  } else if (!seguimiento.id_tarea) {
+    } else if (!seguimiento.id_tarea) {
         throw {
             ok: false,
             mensaje: "El id de la tarea"
         };
-    } 
-    else if (!seguimiento.fecha) {
+    }
+    else if (!seguimiento.fecha_evaluacion) {
         throw {
             ok: false,
             mensaje: "La fecha del seguimiento "
         };
-    } else if (!seguimiento.comentario) {
+    } else if (!seguimiento.concepto) {
+        throw {
+            ok: false,
+            mensaje: "El concepto del seguimiento"
+        };
+    } else if (!seguimiento.comentarios) {
         throw {
             ok: false,
             mensaje: "El comentario del seguimiento"
         };
-    } else if (!seguimiento.estado) {
-        throw {
-            ok: false,
-            mensaje: "El estado del seguimiento"
-        };
-        
-    }else if (!seguimiento.archivo) {
-        throw {
-            ok: false,
-            mensaje: "El archivo del seguimiento"
-        };
-        
-    }else if (!seguimiento.id_propuesta) {
-        throw {
-            ok: false,
-            mensaje: "la propuesta del seguimiento"
-        };
-        
+
     }
-    
 };
 
 
 let guardarSeguimiento = async (seguimiento) => {
     let _servicio = new ServicioPg();
-    let sql = `INSERT INTO public.pu_seguimientos_propuestas (
-        id, id_tarea, fecha, comentario, estado, archivo, id_propuesta) 
-            VALUES ($1,$2,$3,$4,$5,$6,$7);`;
-            let valores = [seguimiento.id,seguimiento.id_tarea, seguimiento.fecha, 
-                        seguimiento.comentario, seguimiento.estado,
-                        seguimiento.archivo, seguimiento.id_propuesta]
+    let sql = `INSERT INTO public.pu_registros_evaluaciones (
+        id, id_tarea, fecha_evaluacion, concepto, comentarios) 
+            VALUES ($1,$2,$3,$4,$5);`;
+    let valores = [seguimiento.id, seguimiento.id_tarea, seguimiento.fecha_evaluacion,
+    seguimiento.concepto, seguimiento.comentarios]
     let respuesta = await _servicio.ejecutarSql(sql, valores);
     return respuesta;
 };
 
 let consultarSeguimientos = async () => {
     let _servicio = new ServicioPg();
-    let sql = `SELECT pu_seguimientos_propuestas.id, pu_tareas.nombre AS Tarea, fecha, comentario, estado, archivo, pu_propuestas_publicaciones.titulo
-    FROM public.pu_seguimientos_propuestas 
-    INNER JOIN pu_tareas ON pu_seguimientos_propuestas.id_tarea = pu_tareas.id
-    INNER JOIN pu_propuestas_publicaciones ON pu_seguimientos_propuestas.id_propuesta = pu_propuestas_publicaciones.id;`;
+    let sql = `SELECT pu_registros_evaluaciones.id, pu_tareas.nombre AS Tarea, fecha_evaluacion, comentarios, concepto
+    FROM public.pu_registros_evaluaciones 
+    INNER JOIN pu_tareas ON pu_registros_evaluaciones.id_tarea = pu_tareas.id;`
     let respuesta = await _servicio.ejecutarSql(sql);
     return respuesta;
 };
 
 let consultarSeguimiento = async (id) => {
     let _servicio = new ServicioPg();
-    let sql = `SELECT id, id_tarea, fecha, comentario, estado, archivo, id_propuesta
-	            FROM public.pu_seguimientos_propuestas WHERE pu_seguimientos_propuestas.id = $1;`;
+    let sql = `SELECT id, id_tarea, fecha_evaluacion, comentarios, concepto
+	            FROM public.pu_registros_evaluaciones WHERE pu_registros_evaluaciones.id = $1;`;
     let respuesta = await _servicio.ejecutarSql(sql, [id]);
     return respuesta;
 };
@@ -83,29 +68,29 @@ let consultarSeguimiento = async (id) => {
 let eliminarSeguimiento = async (id) => {
     let _servicio = new ServicioPg();
     console.log(id)
-    let sql = `DELETE FROM public.pu_seguimientos_propuestas WHERE id=$1;`;
+    let sql = `DELETE FROM public.pu_registros_evaluaciones WHERE id=$1;`;
     let respuesta = await _servicio.ejecutarSql(sql, [id]);
     return respuesta;
-  };
-  
-  let editarSeguimiento = async (seguimiento, id) => {
-    if(seguimiento.id != id){
+};
+
+let editarSeguimiento = async (seguimiento, id) => {
+    if (seguimiento.id != id) {
         throw {
             ok: false,
-            mensaje: "el id de la tarea no corresponde al enviado",   
+            mensaje: "el id del seguimiento no corresponde al enviado",
         };
     }
     let _servicio = new ServicioPg();
-   
-    let sql = 'UPDATE public.pu_seguimientos_propuestas set id_tarea =$1,'
-    +'fecha =$2, comentario =$3, estado =$4, archivo =$5, id_propuesta =$6 WHERE id = $7;';
-    let valores = [seguimiento.id_tarea, seguimiento.fecha, seguimiento.comentario, seguimiento.estado, seguimiento.archivo, seguimiento.id_propuesta, id]
+
+    let sql = 'UPDATE public.pu_registros_evaluaciones set id_tarea =$1,'
+        + 'fecha_evaluacion =$2, concepto =$3, cometarios =$4 WHERE id = $5;';
+    let valores = [seguimiento.id_tarea, seguimiento.fecha_evaluacion, seguimiento.concepto, seguimiento.comentarios, id]
     let respuesta = await _servicio.ejecutarSql(sql, valores);
-    
+
     return respuesta;
 };
 
 
 // exportar los metodos para ser usados en otros archivos
 
-module.exports = { validarSeguimiento, guardarSeguimiento, consultarSeguimiento,consultarSeguimientos, eliminarSeguimiento,editarSeguimiento};
+module.exports = { validarSeguimiento, guardarSeguimiento, consultarSeguimiento, consultarSeguimientos, eliminarSeguimiento, editarSeguimiento };

@@ -7,13 +7,13 @@ export default {
         };
     },
     created() {
-        //this.generarPdf();
+        this.generarPdf();
     },
     computed: {
       
     },
     methods: {
-        /*generarPdf() {           
+        generarPdf() {           
             axios
                 .get("http://127.0.0.1:3001/pdf/publicaciones")
                 .then(response => {
@@ -22,6 +22,6 @@ export default {
                 .catch(error => {
                     console.log(error);
                 });
-        }*/
+        }
     }
 };

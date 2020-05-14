@@ -62,7 +62,7 @@ let guardarObra = async (obra) => {
 
 let consultarTareas= async () => {
     let _servicio = new ServicioPg();
-    let sql = `SELECT id, nombre FROM public.pu_tareas ORDER BY pu_tareas.id;`;
+    let sql = `SELECT nombre FROM public.pu_tareas ORDER BY pu_tareas.id;`;
     let respuesta = await _servicio.ejecutarSql(sql);
     return respuesta;
 };

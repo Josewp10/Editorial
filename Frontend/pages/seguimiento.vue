@@ -15,19 +15,16 @@
         <br />
         <b-table striped hover :items="lista_busqueda"></b-table>
       </b-row>
-      <b-row cols="3">
+      <b-row>
         <b-col>
-          <b-card title="Gestión de seguimiento a la obra: ">
+          <b-card title="Gestión de seguimiento a la Propuesta: ">
             <b>
               <p>"Nombre Propuesta"</p>
             </b>
-            <b-img left="3px" src="@/static/images/question.png" width="80" height="80"></b-img>
-            <b-card-text>El sello editorial realizara...:</b-card-text>
+            <b-card-text>El sello editorial realizara un seguimiento de las propuestas aprobadas :</b-card-text>
 
             <b-form action="javascript:void(0)" @submit="crearSeguimiento()">
-              <br />
-              <br />
-              <b-form-group label="Id Seguimiento" label-for="id">
+              <b-form-group label="Código" label-for="id">
                 <b-form-input
                   class="form-control"
                   type="number"
@@ -40,56 +37,31 @@
               </b-form-group>
 
               <b-form-group label="Tarea">
-                <b-form-input
-                  class="form-control"
-                  type="number"
-                  required
-                  v-model="seguimiento.id_tarea"
-                  placeholder="Ingrese Id Tarea"
-                  id="id"
-                />
+               <b-form-select v-model="seguimiento.id_tarea" :options="lista_tareas" value-field="id"
+               text-field="nombre" class="mb-3"></b-form-select>
                 <b-form-invalid-feedback :state="validacionIdTarea">Campo obligatorio</b-form-invalid-feedback>
               </b-form-group>
 
               <b-form-group label="Fecha">
-                <b-form-input v-model="seguimiento.fecha" required placeholder="aaaa/mm/dd" type="text"></b-form-input>
+                <b-form-input
+                  v-model="seguimiento.fecha"
+                  required
+                  placeholder="aaaa/mm/dd"
+                  type="text"
+                ></b-form-input>
                 <b-form-invalid-feedback :state="validacionFecha">Campo obligatorio</b-form-invalid-feedback>
               </b-form-group>
 
-              <b-form-group label="Estado">
+              <b-form-group label="Estado (1 Aprobado - 0 Reprobado)">
                 <b-form-input
                   class="form-control"
                   type="text"
                   required
                   v-model="seguimiento.estado"
-                  placeholder="Ingrese Estado de la propuesta"
+                  placeholder="Ingrese 0 para Reprobado o 1 para Aprobado "
                   id="estado"
                 />
                 <b-form-invalid-feedback :state="validacionEstado">Campo obligatorio</b-form-invalid-feedback>
-              </b-form-group>
-
-              <b-form-group label="Propuesta">
-                <b-form-input
-                  class="form-control"
-                  type="number"
-                  required
-                  v-model="seguimiento.id_propuesta"
-                  placeholder="Ingrese Id de la Propuesta"
-                  id="estado"
-                />
-                <b-form-invalid-feedback :state="validacionIdPropuesta">Campo obligatorio</b-form-invalid-feedback>
-              </b-form-group>
-
-              <b-form-group label="Archivo">
-                <b-form-input
-                  class="form-control"
-                  type="text"
-                  required
-                  v-model="seguimiento.archivo"
-                  placeholder="Seleccione el archivo"
-                  id="estado"
-                />
-                <b-form-invalid-feedback :state="validacionArchivo">Campo obligatorio</b-form-invalid-feedback>
               </b-form-group>
 
               <b-form-textarea
@@ -101,30 +73,38 @@
               <b-form-invalid-feedback :state="validacionComentario">Campo obligatorio</b-form-invalid-feedback>
               <br />
 
-              <b-button type="submit" variant="danger" v-if="!enEdicion">Crear Seguimiento</b-button>
+              <b-button type="submit" variant="outline-danger" v-if="!enEdicion">Crear Seguimiento</b-button>
 
-              <b-button @click="actualizarSeguimiento()" variant="primary" v-else>Actualizar</b-button>
+              <b-button @click="actualizarSeguimiento()" variant="primary" v-else></b-button>
             </b-form>
           </b-card>
         </b-col>
         <b-col>
-          <b-table striped hover :items="lista_seguimiento">
+          <b-table
+            striped
+            responsive
+            hover
+            :items="lista_seguimiento"
+            class="border border-danger text-center"
+          >
             <template v-slot:cell(acciones)="row">
-              <b-button
+              <b-button 
                 size="sm"
                 @click="cargarSeguimiento(row)"
                 class="mr-2"
-                variant="warning"
-              >Modificar</b-button>
+                variant="outline-primary"
+              ><b-img left src="@/static/images/edit.png" width="30" height="30"></b-img></b-button>
+              <br />
               <br />
               <b-button
                 size="sm"
                 @click="eliminarSeguimiento(row)"
                 class="mr-2"
-                variant="danger"
-              >Eliminar</b-button>
+                variant="outline-danger"
+              ><b-img left src="@/static/images/delete.png" width="30" height="30"></b-img></b-button>
               <br />
-              <b-button v-b-modal.modal-1>Enviar Notificación</b-button>
+              <br />
+              <b-button v-b-modal.modal-1 variant="outline-danger">Enviar Notificación</b-button>
               <b-modal id="modal-1" title="Notificar a Autor">
                 <b-form-group label-class="font-weight-bold pt-0" class="mb-1">
                   <b-form-group>

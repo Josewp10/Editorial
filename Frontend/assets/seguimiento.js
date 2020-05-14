@@ -7,19 +7,17 @@ export default {
             enEdicion: false,
             seguimiento: {
                 id: "",
-                tareas: "",
+                id_tarea: "",
                 fecha: "",
-                comentario: "",
                 estado: "",
-                archivo: "",
-                id_propuesta: "",
+                comentario: "",
                 acciones: true
             },
             lista_seguimiento: [],
             lista_tareas: []
         };
     },
-    created() {
+    mounted() {
         this.listarSeguimientos();
         this.listarTareas();
     },
@@ -28,7 +26,7 @@ export default {
             return this.validar_condicion(this.seguimiento.id.length > 0)
         },
         validacionIdTarea() {
-            return this.validar_condicion(this.seguimiento.tareas.length > 0)
+            return this.validar_condicion(this.seguimiento.id_tarea.length > 0)
         },
         validacionFecha() {
             return this.validar_condicion(this.seguimiento.fecha.length > 0)
@@ -38,12 +36,6 @@ export default {
         },
         validacionEstado() {
             return this.validar_condicion(this.seguimiento.estado.length > 0)
-        },
-        validacionArchivo() {
-            return this.validar_condicion(this.seguimiento.archivo.length > 0)
-        },
-        validacionIdPropuesta() {
-            return this.validar_condicion(this.seguimiento.id_propuesta.length > 0)
         }
     },
     methods: {
@@ -79,7 +71,7 @@ export default {
                     console.log(response);
                     this.lista_tareas = response.data.info;
                     
-                    //console.log(this.lista_tareas);
+                    console.log(this.lista_tareas);
                     //alert(lista_tareas)
                 })
                 .catch(error => {
@@ -92,16 +84,14 @@ export default {
                     .post("http://127.0.0.1:3001/seguimiento", this.seguimiento)
                     .then(response => {
                         this.lista_seguimiento.push(response.data.info);
-                        alert(lista_seguimiento);
+                       // alert(lista_seguimiento);
                         //lista de seguimientos
                         this.seguimiento = {
                             id: "",
                             id_tarea: "",
                             fecha: "",
-                            comentario: "",
                             estado: "",
-                            archivo: "",
-                            id_propuesta: "",
+                            comentario: "",
                             acciones: true
                         };
                     })
@@ -143,8 +133,6 @@ export default {
                     this.seguimiento.fecha = array[0].fecha;
                     this.seguimiento.comentario = array[0].comentario;
                     this.seguimiento.estado = array[0].estado;
-                    this.seguimiento.archivo = array[0].archivo;
-                    this.seguimiento.id_propuesta = array[0].id_propuesta;
                     this.seguimiento.acciones = true;
                 })
                 .catch((error) => {
@@ -167,8 +155,6 @@ export default {
                             fecha: "",
                             comentario: "",
                             estado: "",
-                            archivo: "",
-                            id_propuesta: "",
                             acciones: true
                         };
                     })
