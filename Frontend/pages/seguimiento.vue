@@ -3,19 +3,6 @@
     <br />
     <b-container class="bv-example-row mb-3">
       <b-row>
-        <b-input-group class="mt-3">
-          <b-form-input></b-form-input>
-          <b-input-group-append>
-            <b-button variant="danger">
-              <b-img center src="@/static/images/buscar.png" width="25" height="25"></b-img>
-            </b-button>
-          </b-input-group-append>
-        </b-input-group>
-        <br />
-        <br />
-        <b-table striped hover :items="lista_busqueda"></b-table>
-      </b-row>
-      <b-row>
         <b-col>
           <b-card title="Gestión de seguimiento a la Propuesta: ">
             <b>
@@ -37,9 +24,9 @@
               </b-form-group>
 
               <b-form-group label="Tarea">
-               <b-form-select v-model="seguimiento.id_tarea" :options="lista_tareas" value-field="id"
+             <b-form-select v-model="seguimiento.id_tarea" :options="lista_tareas" value-field="id"
                text-field="nombre" class="mb-3"></b-form-select>
-                <b-form-invalid-feedback :state="validacionIdTarea">Campo obligatorio</b-form-invalid-feedback>
+                <b-form-invalid-feedback :state="validacionTarea">Campo obligatorio</b-form-invalid-feedback>
               </b-form-group>
 
               <b-form-group label="Fecha">
@@ -52,7 +39,7 @@
                 <b-form-invalid-feedback :state="validacionFecha">Campo obligatorio</b-form-invalid-feedback>
               </b-form-group>
 
-              <b-form-group label="Estado (1 Aprobado - 0 Reprobado)">
+              <b-form-group label="Estado">
                 <b-form-input
                   class="form-control"
                   type="text"
@@ -60,6 +47,18 @@
                   v-model="seguimiento.estado"
                   placeholder="Ingrese 0 para Reprobado o 1 para Aprobado "
                   id="estado"
+                />
+                <b-form-invalid-feedback :state="validacionEstado">Campo obligatorio</b-form-invalid-feedback>
+              </b-form-group>
+
+               <b-form-group label="Archivo">
+                <b-form-input
+                  class="form-control"
+                  type="text"
+                  required
+                  v-model="seguimiento.archivo"
+                  placeholder="Ingrese archivo"
+                  id="archivo"
                 />
                 <b-form-invalid-feedback :state="validacionEstado">Campo obligatorio</b-form-invalid-feedback>
               </b-form-group>

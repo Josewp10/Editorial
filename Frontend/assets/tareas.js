@@ -67,7 +67,6 @@ export default {
           .post("http://127.0.0.1:3001/tareas", this.pu_tarea)
           .then(response => {
             this.lista_tareas.push(response.data.info);
-            alert(lista_tareas);
             this.pu_tarea = {
               id: "",
               nombre: "",
@@ -139,6 +138,7 @@ export default {
             this.lista_tareas.splice(posicion, 1, this.pu_tarea);
             this.enEdicion = false;
             this.pu_tarea = {
+              id:"",
               nombre: "",
               descripcion: "",
               modulo: "",

@@ -11,13 +11,14 @@ export default {
                 fecha: "",
                 estado: "",
                 comentario: "",
+                archivo:"",
                 acciones: true
             },
             lista_seguimiento: [],
             lista_tareas: []
         };
     },
-    mounted() {
+    mounted(){
         this.listarSeguimientos();
         this.listarTareas();
     },
@@ -25,7 +26,7 @@ export default {
         validacionId() {
             return this.validar_condicion(this.seguimiento.id.length > 0)
         },
-        validacionIdTarea() {
+        validacionTarea() {
             return this.validar_condicion(this.seguimiento.id_tarea.length > 0)
         },
         validacionFecha() {
@@ -57,7 +58,7 @@ export default {
                     for (let i in this.lista_seguimiento) {
                         this.lista_seguimiento[i].acciones = true;
                     }
-                    console.log(lista_seguimiento);
+                    console.log(this.lista_seguimiento);
                     //this.enEdicion = true;
                 })
                 .catch(error => {
@@ -79,24 +80,28 @@ export default {
                 });
         },
         crearSeguimiento() {
+            //console.log(this.seguimiento);
+            
             if (this.validacion == true) {
                 axios
                     .post("http://127.0.0.1:3001/seguimiento", this.seguimiento)
                     .then(response => {
-                        this.lista_seguimiento.push(response.data.info);
-                       // alert(lista_seguimiento);
-                        //lista de seguimientos
+                        console.log(response);
+                        
+                        this.lista_seguimiento.push(response.data);
+                       
                         this.seguimiento = {
                             id: "",
                             id_tarea: "",
                             fecha: "",
                             estado: "",
                             comentario: "",
+                            archivo:"",
                             acciones: true
                         };
                     })
                     .catch(error => {
-                        console.log(error);
+                        console.log(error.response);
                     });
             } else {
                 alert("LLene todos los campos correctamente");
@@ -133,6 +138,7 @@ export default {
                     this.seguimiento.fecha = array[0].fecha;
                     this.seguimiento.comentario = array[0].comentario;
                     this.seguimiento.estado = array[0].estado;
+                    this.seguimiento.archivo = array[0].archivo,
                     this.seguimiento.acciones = true;
                 })
                 .catch((error) => {
@@ -150,11 +156,14 @@ export default {
                         );
                         this.lista_seguimiento.splice(posicion, 1, this.seguimiento);
                         this.enEdicion = false;
+                        this.listarTareas();
                         this.seguimiento = {
+                            id: "",
                             id_tarea: "",
                             fecha: "",
-                            comentario: "",
                             estado: "",
+                            comentario: "",
+                            archivo:"",
                             acciones: true
                         };
                     })
