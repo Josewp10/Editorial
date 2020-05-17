@@ -69,11 +69,13 @@ let consultarTareas = async () => {
 
 let consultarObras = async () => {
     let _servicio = new ServicioPg();
-    let sql = `SELECT pu_propuestas_publicaciones.id AS "id obra",titulo,CONCAT(nombre,' ',apellidos)AS Autor, facultad,tipo_publicacion, area 
+    let sql = `SELECT pu_propuestas_publicaciones.id AS "id obra",titulo,
+    CONCAT(nombre,' ',apellidos)AS Autor, facultad,tipo_publicacion, area 
                 FROM public.pu_autores_publicaciones
                 INNER JOIN public.acc_usuarios on public.pu_autores_publicaciones.id_autor = public.acc_usuarios.id
-                INNER JOIN public.pu_propuestas_publicaciones on public.pu_autores_publicaciones.id_publicacion=public.pu_propuestas_publicaciones.id 
-                ORDER BY pu_propuestas_publicaciones.id`;
+                INNER JOIN public.pu_propuestas_publicaciones on public.pu_autores_publicaciones.id_publicacion =  public.pu_propuestas_publicaciones.id 
+                INNER JOIN public.pu_registros_evaluaciones on pu_registros_evaluaciones.id_publicacion  = public.pu_propuestas_publicaciones.id
+                WHERE public.pu_registros_evaluaciones.concepto = 1`;
     let respuesta = await _servicio.ejecutarSql(sql);
     return respuesta;
 };
@@ -84,10 +86,12 @@ let consultarObra = async (id) => {
     FROM public.pu_autores_publicaciones
     INNER JOIN public.acc_usuarios on public.pu_autores_publicaciones.id_autor = public.acc_usuarios.id
     INNER JOIN public.pu_propuestas_publicaciones on public.pu_autores_publicaciones.id_publicacion=public.pu_propuestas_publicaciones.id 
-    WHERE pu_propuestas_publicaciones.id = $1`;
+    INNER JOIN public.pu_registros_evaluaciones on pu_registros_evaluaciones.id_publicacion  = public.pu_propuestas_publicaciones.id
+    WHERE public.pu_registros_evaluaciones.concepto = 1`;
     let respuesta = await _servicio.ejecutarSql(sql, [id]);
     return respuesta;
 };
+
 
 
 let eliminarObra = async (id) => {
