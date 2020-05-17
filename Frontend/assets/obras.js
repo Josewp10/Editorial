@@ -34,25 +34,17 @@ export default {
                 .get("http://127.0.0.1:3001/obra")
                 .then(response => {
                     console.log(response);
-                    this.lista_obra = response.data.info;
+                    this.lista_obra = response.data.info;    
                     for (let i in this.lista_obra) {
                         this.lista_obra[i].acciones = true;
                     }
-                    console.log(lista_obra);
-                    console.log(this.lista_obra[0].titulo)
-                    this.$cookies.set("nombreobra", lista_obra);
-                    //this.enEdicion = true;
-                    this.$router.get({ path: "seguimiento", query: { titulo: response.data.info.titulo['titulo'] } });
+                    sessionStorage.setItem('obra', JSON.stringify(this.lista_obra));
+                    console.log(sessionStorage.getItem('obra'));
+                    
                 })
                 .catch(error => {
                     console.log(error);
                 });
-        },
-        almacenarObra(item){
-            let obra = lista_obra[item.index].nombre
-            console.log(item.index);
-            
-            localStorage.setItem(nombreObra, obra)
         }
     }
 };

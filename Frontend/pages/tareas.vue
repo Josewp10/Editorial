@@ -5,7 +5,6 @@
       <b-row cols="2">
         <b-col>
           <b-card title="Gestión de Tareas">
-            <b-img left="3px" src="@/static/images/smartphone.png" width="70" height="70"></b-img>
             <b-card-text>A continuación inserte las tareas que ejecutara el módulo de gestión de la publicación :</b-card-text>
 
             <b-form action="javascript:void(0)" @submit="crearTareas()">
@@ -69,8 +68,10 @@
             responsive
             hover :items="lista_tareas"  v-show="showTable" class="border border-danger text-center">
             <template v-slot:cell(acciones)="row">
-              <b-button size="sm" @click="cargarTarea(row)" class="mr-2"  variant="outline-primary"><b-img left src="@/static/images/edit.png" width="20" height="20"></b-img>Modificar</b-button>
-              <b-button size="sm" @click="eliminarTareas(row)" class="mr-2" variant="outline-danger"><b-img left src="@/static/images/delete.png" width="20" height="20"></b-img>Eliminar</b-button>
+              <b-button size="sm" @click="cargarTarea(row)" class="mr-2"  variant="outline-primary"><b-img left src="@/static/images/edit.png" width="15" height="15"></b-img>Modificar</b-button>
+              <br>
+              <br>
+              <b-button size="sm" @click="eliminarTareas(row)" class="mr-2" variant="outline-danger"><b-img left src="@/static/images/delete.png" width="15" height="15"></b-img>Eliminar</b-button>
             </template>
           </b-table>
         </b-col>

@@ -17,7 +17,20 @@ export default {
                 acciones: true
             },
             lista_seguimiento: [],
-            lista_tareas: []
+            lista_tareas: [],
+            opciones_estados: [
+                { value: null, text: "Seleccione el tipo de estado", disabled: true },
+                { value: "Aprobado", text: "Activo" },
+                { value: "En Revisión", text: "En Revisión" },
+                { value: "Reprobado", text: "Reprobado" },
+                { value: "Cancelado", text: "Cancelado" },
+            ],
+            opciones_notificacion:[
+                { value: null, text: "Seleccione el tipo de Notificación", disabled: true },
+                { value: "Con Ajustes", text: "Con Ajustes" },
+                { value: "Versión Maquetada para revisión", text: "Versión Final" },
+                { value: "Versión Final", text: "Versión Final" },
+            ],
         };
     },
     mounted(){
@@ -38,6 +51,9 @@ export default {
         },
         validacionComentario() {
             return this.validar_condicion(this.seguimiento.comentario.length > 0)
+        },
+        validacionArchivo() {
+            return this.validar_condicion(this.seguimiento.archivo.length > 0)
         },
         validacionEstado() {
             return this.validar_condicion(this.seguimiento.estado.length > 0)
