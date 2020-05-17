@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const {validarSeguimiento,
     guardarSeguimiento,
-    consultarSeguimiento, consultarSeguimientos,
+    consultarSeguimiento, consultarSeguimientos,consultarPorObra,
     eliminarSeguimiento,
     editarSeguimiento} = require("../controllers/seguimiento");
 
@@ -23,7 +23,7 @@ router.get("/seguimiento", async (req, res) => {
 //Trae un seguimiento filtrado por el Id
 router.get("/seguimiento/:id", async (req, res) => {
   let id = req.params.id;
-  consultarSeguimiento(id)
+  consultarPorObra(id)
       .then(seguimientoDB => {
           let seguimiento = seguimientoDB.rows;
           res.send({ ok: true, info: seguimiento, mensaje: "Seguimiento consultado" });

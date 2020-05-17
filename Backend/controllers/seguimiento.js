@@ -76,6 +76,16 @@ let consultarSeguimiento = async (id) => {
     return respuesta;
 };
 
+let consultarPorObra = async (id) => {
+    let _servicio = new ServicioPg();
+    let sql = `SELECT pu_tareas.nombre as Tarea, fecha, estado, comentario FROM public.pu_seguimientos_aprobados
+                INNER JOIN public.pu_tareas on pu_tareas.id = pu_seguimientos_aprobados.id_tarea
+                INNER JOIN public.pu_propuestas_publicaciones on pu_propuestas_publicaciones.id = pu_seguimientos_aprobados.id_propuesta
+                WHERE pu_seguimientos_aprobados.id_propuesta = $1;`;
+    let respuesta = await _servicio.ejecutarSql(sql, [id]);
+    return respuesta;
+};
+
 let eliminarSeguimiento = async (id) => {
     let _servicio = new ServicioPg();
     console.log(id)
@@ -104,4 +114,4 @@ let eliminarSeguimiento = async (id) => {
 
 // exportar los metodos para ser usados en otros archivos
 
-module.exports = { validarSeguimiento, guardarSeguimiento, consultarSeguimiento,consultarSeguimientos, eliminarSeguimiento,editarSeguimiento};
+module.exports = { validarSeguimiento, guardarSeguimiento, consultarSeguimiento,consultarSeguimientos, eliminarSeguimiento,editarSeguimiento, consultarPorObra};
