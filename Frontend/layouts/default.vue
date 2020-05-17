@@ -4,6 +4,7 @@
       <b-navbar toggleable="lg" type="dark" variant="danger">
         <b-navbar-brand href=".">
           <b-img left src="@/static/images/logoUdem.png" width="220" height="60"></b-img>
+          <h2><center>Gestión de la Publicación</center></h2>
         </b-navbar-brand>
 
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>

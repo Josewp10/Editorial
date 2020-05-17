@@ -30,7 +30,6 @@ export default {
             }
           },
         listarObras() {
-            
             axios
                 .get("http://127.0.0.1:3001/obra")
                 .then(response => {
@@ -40,8 +39,10 @@ export default {
                         this.lista_obra[i].acciones = true;
                     }
                     console.log(lista_obra);
-                    //this.$cookies.set("nombreobra", lista_obra);
+                    console.log(this.lista_obra[0].titulo)
+                    this.$cookies.set("nombreobra", lista_obra);
                     //this.enEdicion = true;
+                    this.$router.get({ path: "seguimiento", query: { titulo: response.data.info.titulo['titulo'] } });
                 })
                 .catch(error => {
                     console.log(error);

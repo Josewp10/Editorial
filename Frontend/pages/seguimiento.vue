@@ -6,7 +6,7 @@
         <b-col>
           <b-card title="Gestión de seguimiento a la Propuesta: ">
             <b>
-              <p>"Nombre Propuesta"</p>
+              <p>Propuesta:{{titulo}}</p>
             </b>
             <b-card-text>El sello editorial realizara un seguimiento de las propuestas aprobadas :</b-card-text>
 
@@ -73,7 +73,6 @@
               <br />
 
               <b-button type="submit" variant="outline-danger" v-if="!enEdicion">Crear Seguimiento</b-button>
-
               <b-button @click="actualizarSeguimiento()" variant="primary" v-else></b-button>
             </b-form>
           </b-card>
@@ -92,7 +91,7 @@
                 @click="cargarSeguimiento(row)"
                 class="mr-2"
                 variant="outline-primary"
-              ><b-img left src="@/static/images/edit.png" width="30" height="30"></b-img></b-button>
+              ><b-img left src="@/static/images/edit.png" width="20" height="20"></b-img>Modificar</b-button>
               <br />
               <br />
               <b-button
@@ -100,7 +99,7 @@
                 @click="eliminarSeguimiento(row)"
                 class="mr-2"
                 variant="outline-danger"
-              ><b-img left src="@/static/images/delete.png" width="30" height="30"></b-img></b-button>
+              ><b-img left src="@/static/images/delete.png" width="20" height="20"></b-img>Eliminar</b-button>
               <br />
               <br />
               <b-button v-b-modal.modal-1 variant="outline-danger">Enviar Notificación</b-button>

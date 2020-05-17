@@ -5,6 +5,8 @@ export default {
         return {
             mensaje: "CRUD De   Seguimiento",
             enEdicion: false,
+            titulo:"",
+            disabled: 0,
             seguimiento: {
                 id: "",
                 id_tarea: "",
@@ -21,6 +23,8 @@ export default {
     mounted(){
         this.listarSeguimientos();
         this.listarTareas();
+        this.asignar();
+        this.disabled = 0;
     },
     computed: {
         validacionId() {
@@ -49,9 +53,12 @@ export default {
               return true;
             }
           },
+          asignar(){
+            this.titulo = this.$route.query.titulo;
+          },
         listarSeguimientos() {
             axios
-                .get("http://127.0.0.1:3001/seguimiento")
+                .get("http://127.0.0.1:3001/seguimiento/")
                 .then(response => {
                     console.log(response);
                     this.lista_seguimiento = response.data.info;
@@ -89,7 +96,7 @@ export default {
                         console.log(response);
                         
                         this.lista_seguimiento.push(response.data);
-                       
+                        this.disabled = 0;
                         this.seguimiento = {
                             id: "",
                             id_tarea: "",
@@ -99,6 +106,7 @@ export default {
                             archivo:"",
                             acciones: true
                         };
+                        this.$router.push({ path: "seguimiento", query: { titulo: response.data['titulo'] } });
                     })
                     .catch(error => {
                         console.log(error.response);
@@ -131,7 +139,7 @@ export default {
                 .get(`http://127.0.0.1:3001/seguimiento/${item.id}`)
                 .then((response) => {
                     var array = response.data.info;
-
+                    this.disabled = 1;
                     this.enEdicion = true;
                     this.seguimiento.id = array[0].id;
                     this.seguimiento.id_tarea = array[0].id_tarea;

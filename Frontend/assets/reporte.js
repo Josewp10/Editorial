@@ -6,22 +6,20 @@ export default {
             mensaje: "Reporte",
         };
     },
-    created() {
+    mounted() {
         this.generarPdf();
     },
     computed: {
-      
+
     },
     methods: {
-        generarPdf() {           
-            axios
-                .get("http://127.0.0.1:3001/pdf/publicaciones")
-                .then(response => {
-                    console.log(response);
-                })
-                .catch(error => {
-                    console.log(error);
-                });
+        generarPdf() {
+            //let response = await this.$axios.get("http://127.0.0.1:3001/pdf/publicaciones");
+            //var link = document.createElement("reporte");
+            //link.href = url;
+            //link.target = "blank";
+            //document.body.appendChild(link);
+            //link.click();
         }
     }
 };
