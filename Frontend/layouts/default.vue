@@ -18,7 +18,7 @@
              <b-dropdown-item class="a" href="principal">Principal</b-dropdown-item>
               <b-dropdown-item class="a" href="tareas">Gestión de Tareas</b-dropdown-item>
               <b-dropdown-item class="a" href="consultarobras">Consultar Obras</b-dropdown-item>
-              <b-dropdown-item class="a" href="">Reportes</b-dropdown-item>
+              <b-dropdown-item class="a" href="reportes">Reportes</b-dropdown-item>
                <b-dropdown-item class="a" href="">Salir</b-dropdown-item>
             </b-nav-item-dropdown>
           </b-navbar-nav>

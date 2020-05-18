@@ -6,6 +6,7 @@ export default {
             mensaje: "CRUD De   Seguimiento",
             enEdicion: false,
             titulo:"",
+            idObra: null,
             disabled: 0,
             seguimiento: {
                 id: "",
@@ -36,7 +37,7 @@ export default {
     mounted(){
         this.listarSeguimientos();
         this.listarTareas();
-        this.asignar();
+        this.almacenarNombre();
         this.disabled = 0;
     },
     computed: {
@@ -198,6 +199,12 @@ export default {
                 alert("LLene todos los campos correctamente");
             }
 
+        },
+        almacenarNombre(){
+            /*this.titulo = sessionStorage.getItem('obra').titulo
+            this.idObra = sessionStorage.getItem('obra').id
+            console.log(this.titulo);*/
+            
         }
     }
 };
