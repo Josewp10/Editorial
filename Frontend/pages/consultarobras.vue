@@ -9,7 +9,7 @@
           <b-input-group class="mt-3">
             <b-form-input></b-form-input>
             <b-input-group-append>
-              <b-button variant="danger"><b-img center="" src="@/static/images/buscar.png" width="25" height="25"></b-img></b-button>
+              <b-button variant="danger" v-model="nombreObra"><b-img center="" src="@/static/images/buscar.png" width="25" height="25"></b-img></b-button>
             </b-input-group-append>
           </b-input-group>
         </b-col>
