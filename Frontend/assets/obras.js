@@ -21,32 +21,40 @@ export default {
       
     },
     methods: {
-         listarObras(nombreObra) {
+        listarObras() {
             let arreglo = []
+            let arregloNombre = []
             axios
                 .get("http://127.0.0.1:3001/obra")
                 .then(response => {
                     console.log(response);
                     arreglo = response.data.info;
-                    if (!this.nombreObra ) {
+
+                    if (this.nombreObra == "") {
                         this.lista_obra = arreglo;
                         for (let i in this.lista_obra) {
                             this.lista_obra[i].acciones = true;
                         }
-                        sessionStorage.setItem('obra', JSON.stringify(this.lista_obra));
-                        console.log(sessionStorage.getItem('obra'));
-                    }else{
-                        this.lista_obra = arreglo.filter(e =>{return e.indexOf(this.nombreObra)> -1})
+
+                    } else {
+                        for (let i in arreglo) {
+                            if (arreglo[i].titulo.toLowerCase() == this.nombreObra.toLowerCase()) {
+
+
+                                this.lista_obra = []
+                                this.lista_obra.push(arreglo[i])
+                            }
+                        }
+
                         for (let i in this.lista_obra) {
                             this.lista_obra[i].acciones = true;
                         }
                     }
-                
                 })
                 .catch(error => {
                     console.log(error);
                 });
-        }
+        },
 
         
     }
