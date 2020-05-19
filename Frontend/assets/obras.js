@@ -16,6 +16,7 @@ export default {
     },
     created() {
         this.listarObras();
+        almacenarDatos();
     },
     computed: {
       
@@ -33,8 +34,7 @@ export default {
                         for (let i in this.lista_obra) {
                             this.lista_obra[i].acciones = true;
                         }
-                        sessionStorage.setItem('obra', JSON.stringify(this.lista_obra));
-                        console.log(sessionStorage.getItem('obra'));
+                        
                     }else{
                         this.lista_obra = arreglo.filter(e =>{return e.indexOf(this.nombreObra)> -1})
                         for (let i in this.lista_obra) {
@@ -46,7 +46,14 @@ export default {
                 .catch(error => {
                     console.log(error);
                 });
+        },
+        almacenarDatos(item){
+            if(this.lista_obra){
+                sessionStorage.setItem('obra', JSON.stringify(this.lista_obra));
+                console.log(sessionStorage.getItem('obra'));
+            }
         }
+
 
         
     }

@@ -78,7 +78,7 @@ let consultarSeguimiento = async (id) => {
 
 let consultarPorObra = async (id) => {
     let _servicio = new ServicioPg();
-    let sql = `SELECT pu_tareas.nombre as Tarea, fecha, estado, comentario FROM public.pu_seguimientos_aprobados
+    let sql = `SELECT pu_seguimientos_aprobados.id,pu_tareas.nombre as Tarea, fecha, estado, comentario FROM public.pu_seguimientos_aprobados
                 INNER JOIN public.pu_tareas on pu_tareas.id = pu_seguimientos_aprobados.id_tarea
                 INNER JOIN public.pu_propuestas_publicaciones on pu_propuestas_publicaciones.id = pu_seguimientos_aprobados.id_propuesta
                 WHERE pu_seguimientos_aprobados.id_propuesta = $1;`;
