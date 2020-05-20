@@ -144,6 +144,18 @@ let editarObra = async (obra, id) => {
   return respuesta;
 };
 
+let infoAutor = async (id) => {
+  let _servicio = new ServicioPg();
+  let sql = `SELECT CONCAT(nombre,' ',apellidos)AS Autor, acc_usuarios.correo
+    FROM public.pu_autores_publicaciones
+    INNER JOIN public.acc_usuarios on public.pu_autores_publicaciones.id_autor = public.acc_usuarios.id
+    INNER JOIN public.pu_propuestas_publicaciones on public.pu_autores_publicaciones.id_publicacion=public.pu_propuestas_publicaciones.id 
+    INNER JOIN public.pu_registros_evaluaciones on pu_registros_evaluaciones.id_publicacion  = public.pu_propuestas_publicaciones.id
+    WHERE public.pu_propuestas_publicaciones.id = $1;`;
+  let respuesta = await _servicio.ejecutarSql(sql, [id]);
+  return respuesta;
+};
+
 // exportar los metodos para ser usados en otros archivos
 
 module.exports = {
@@ -154,4 +166,5 @@ module.exports = {
   eliminarObra,
   editarObra,
   consultarTareas,
+  infoAutor,
 };

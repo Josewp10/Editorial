@@ -17,6 +17,8 @@ router.post("/enviarCorreo/notificacion", (req, res) => {
       .leerArchivo("templates/notificacion.html")
       .toString();
 
+    //template = template.replace("node_autor", info.nombre);
+    template = template.replace("node_obra", info.titulo);
     template = template.replace("node_tarea", info.tarea);
     template = template.replace("node_estado", info.estado);
     template = template.replace("node_tipo", info.tipo);

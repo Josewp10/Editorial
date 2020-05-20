@@ -8,6 +8,7 @@ export default {
       modal: true,
       titulo: "",
       obra: null,
+      indice: 0,
       disabled: 0,
       seguimiento: {
         id: "",
@@ -18,6 +19,7 @@ export default {
         archivo: "",
         acciones: true
       },
+      autor: [],
       notificacion: {
         tipo: "",
         comentario: ""
@@ -49,6 +51,7 @@ export default {
   mounted() {
     this.obra = JSON.parse(sessionStorage.getItem("obra"));
     this.titulo = this.obra.titulo;
+    this.infoAutor();
     this.listarSeguimientos();
     this.listarTareas();
     this.disabled = 0;
@@ -83,6 +86,7 @@ export default {
     asignar() {
       this.titulo = this.$route.query.titulo;
     },
+    //TRAE LOS SEGUIMIENTOS DE LA BASE DE DATOS FILTRADOS POR OBRA
     listarSeguimientos() {
       //let id = this.obra.idobra;
       console.log("ID OBRA: " + this.obra.idobra);
@@ -103,6 +107,7 @@ export default {
           console.log(error);
         });
     },
+    //TRAE LAS TAREAS DE LA BASE DE DATOS PARA SELECCIONARLAS EN EL FORMULARIO
     listarTareas() {
       axios
         .get("http://127.0.0.1:3001/obra/tareas")
@@ -117,6 +122,7 @@ export default {
           console.log(error);
         });
     },
+    //CREA UN NUEVO SEGUIMIENTO EN LA BASE DE DATOS
     crearSeguimiento() {
       //console.log(this.seguimiento);
 
@@ -149,6 +155,7 @@ export default {
         alert("LLene todos los campos correctamente");
       }
     },
+
     cargarSeguimiento({ item }) {
       axios
         .get(`http://127.0.0.1:3001/seguimiento/${item.id}`)
@@ -168,6 +175,7 @@ export default {
           console.log(error);
         });
     },
+    //ELIMINA SEGUIMIENTOS DE LA BASE DE DATOS
     eliminarSeguimiento({ item }) {
       axios
         .delete(`http://127.0.0.1:3001/seguimiento/${item.id}`)
@@ -184,6 +192,7 @@ export default {
           console.log(error);
         });
     },
+    //CREA UN NUEVO SEGUIMIENTO EN LA BASE DE DATOS
     cargarSeguimiento({ item }) {
       axios
         .get(`http://127.0.0.1:3001/seguimiento/${item.id}`)
@@ -203,6 +212,7 @@ export default {
           console.log(error);
         });
     },
+    //ALMACENA LOS VALORES DEL SEGUIMIENTO MODIFICADO EN LA BASE DE DATOS
     actualizarSeguimiento() {
       if (this.validacion == true) {
         axios
@@ -234,41 +244,47 @@ export default {
         alert("LLene todos los campos correctamente");
       }
     },
+    ///ENVÍO DE CORREO
     enviarCorreo() {
       this.notificacion = {
-        tarea: this.obra.titulo,
+        titulo: this.obra.titulo,
+        tarea: this.lista_seguimiento[this.indice].tarea,
         tipo: "",
-        estado: "",
+        estado: this.lista_seguimiento[this.indice].estado,
         comentario: ""
       };
-      console.log("TITULO DESDE CORREO" + this.notificacion.tarea);
-      /*axios
+      /////CONEXIÓN CON BACKEND PARA ENVÍO DE CORREO
+      axios
         .post(
           `http://127.0.0.1:3001/enviarCorreo/notificacion`,
           this.notificacion
         )
         .then(response => {
           console.log(response);
-
-          this.notificacion = {
-            tarea: "",
-            tipo: "",
-            estado: "",
-            comentario: ""
-          };
+          this.modal = true;
         })
         .catch(error => {
           console.log(error);
-        });*/
-      this.modal = true;
+        });
     },
-    showModal() {
-      this.$root.$emit("bv::show::modal", "modal-1", "#btnShow");
-    },
+    //ALMACENA EL INDICE DEL SEGUIMIENTO SELECCIONADO Y ACTIVA LA NOTIFICACIÓN
     almacenarIndice(row) {
       this.modal = false;
       this.indice = row.index;
       console.log("INDICE: " + this.indice);
+    },
+    //TRAE LA INFORMACIÓN DEL AUTOR PARA UTILIZARLA EN LA NOTIFICACIÓN
+    infoAutor() {
+      axios
+        .get(`http://127.0.0.1:3001/obra/autor/${this.obra.idobra}`)
+        .then(response => {
+          console.log("RESPONSE: " + response);
+          this.autor = response.data.info;
+          console.log("EMAIL: " + this.autor[0].email);
+        })
+        .catch(error => {
+          console.log(error);
+        });
     }
   }
 };
