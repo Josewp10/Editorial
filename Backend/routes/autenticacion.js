@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const _controller = require("../controllers/autenticacion");
 
+
 router.use((req, res, next) => {
     try {
       let url = req.url;
@@ -44,7 +45,7 @@ router.use((req, res, next) => {
           }
         })
         .catch((error) => {
-          res.status(500).send(error);
+          res.status(500).send({fallo:error,mensaje:"aqui estoy"});
         });
     } catch (error) {
       res.status(400).send(error);
