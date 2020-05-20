@@ -111,7 +111,7 @@
                   label-align-sm="right"
                   label-for="tipo"
                 >
-                  <b-form-select :options="opciones_notificacion"></b-form-select>
+                  <b-form-select :options="opciones_notificacion" v-model="notificacion.tipo"></b-form-select>
                 </b-form-group>
                 <b-form-group
                   label-cols-sm="3"
@@ -119,9 +119,9 @@
                   label-align-sm="right"
                   label-for="comentario"
                 >
-                  <b-form-textarea id="textarea-large" size="lg" placeholder="Comentario"></b-form-textarea>
+                  <b-form-textarea id="textarea-large" v-model="notificacion.comentario" size="lg" placeholder="Comentario"></b-form-textarea>
                   <br />
-                  <b-button size="40" class="mr-4" variant="warning">Enviar Correo</b-button>
+                  <b-button size="40" class="mr-4" variant="warning" @click="enviarCorreo()">Enviar Correo</b-button>
                 </b-form-group>
               </b-modal>
               </div>

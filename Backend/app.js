@@ -28,6 +28,9 @@ app.use(ruta_seguimiento);
 const ruta_tareas = require("./routes/tareas")
 app.use(ruta_tareas);
 
+const ruta_envioCorreo = require("./routes/envioCorreo")
+app.use(ruta_envioCorreo);
+
 //Puerto
 const port = 3001
 //Levantamiento

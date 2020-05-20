@@ -5,6 +5,7 @@ export default {
         return {
             mensaje: "CRUD De   Seguimiento",
             enEdicion: false,
+            modalShow:false,
             titulo:"",
             idObra: null,
             disabled: 0,
@@ -17,6 +18,11 @@ export default {
                 archivo:"",
                 acciones: true
             },
+            notificacion:{
+                tipo:"",
+                comentario:""
+            }
+            ,
             lista_seguimiento: [],
             lista_tareas: [],
             opciones_estados: [
@@ -200,6 +206,22 @@ export default {
             }
 
         },
+            enviarCorreo(){
+                axios
+                .post(`http://127.0.0.1:3001/enviarCorreo/notificacion`, this.notificacion)
+                .then((response) => {
+                    console.log(response);
+                    this.notificacion = {
+                        tipo:"",
+                        comentario: ""
+                    }
+                    
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+            }
+        ,
         almacenarNombre(){
             /*this.titulo = sessionStorage.getItem('obra').titulo
             this.idObra = sessionStorage.getItem('obra').id
