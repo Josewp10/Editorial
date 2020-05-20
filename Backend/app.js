@@ -13,8 +13,8 @@ app.get("/", (req, res)=>{
 })
 
 ///Importarlas rutas
-//const ruta_autenticacion= require("./routes/autenticacion")
-//app.use(ruta_autenticacion);
+const ruta_autenticacion= require("./routes/autenticacion")
+app.use(ruta_autenticacion);
 
 const ruta_reporte = require("./routes/reportes")
 app.use(ruta_reporte);
@@ -27,6 +27,8 @@ app.use(ruta_seguimiento);
 
 const ruta_tareas = require("./routes/tareas")
 app.use(ruta_tareas);
+
+
 
 //Puerto
 const port = 3001
