@@ -21,7 +21,7 @@ let validarLogin = (usuario) => {
     let _service = new ServicioPg();
     let sql = `SELECT * FROM acc_usuarios WHERE id = $1 AND clave = md5($2)`;
     let valores = [usuario.id, usuario.clave]
-    let respuesta = await _service.runSql(sql, valores);
+    let respuesta = await _service.ejecutarSql(sql, valores);
     return respuesta;
   };
   

@@ -35,7 +35,7 @@ export default {
             opciones_notificacion:[
                 { value: null, text: "Seleccione el tipo de Notificación", disabled: true },
                 { value: "Con Ajustes", text: "Con Ajustes" },
-                { value: "Versión Maquetada para revisión", text: "Versión Final" },
+                { value: "Versión Maquetada para revisión", text: "Versión Maquetada para revisión" },
                 { value: "Versión Final", text: "Versión Final" },
             ],
         };
@@ -169,7 +169,7 @@ export default {
                     this.seguimiento.fecha = array[0].fecha;
                     this.seguimiento.comentario = array[0].comentario;
                     this.seguimiento.estado = array[0].estado;
-                    this.seguimiento.archivo = array[0].archivo,
+                    this.seguimiento.archivo = array[0].archivo;
                     this.seguimiento.acciones = true;
                 })
                 .catch((error) => {

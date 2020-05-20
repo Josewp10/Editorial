@@ -67,7 +67,7 @@
               <br />
 
               <b-button type="submit" variant="outline-danger" v-if="!enEdicion">Crear Seguimiento</b-button>
-              <b-button @click="actualizarSeguimiento()" variant="primary" v-else></b-button>
+              <b-button @click="actualizarSeguimiento()" variant="primary" v-else>Actualizar</b-button>
             </b-form>
           </b-card>
         </b-col>

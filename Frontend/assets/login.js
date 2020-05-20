@@ -1,4 +1,6 @@
 import axios from "axios";
+import config from "../assets/config"
+
 export default {
   //Asigno el layout
   layout: "login",
@@ -19,13 +21,15 @@ export default {
       }
     };
   },
-  methods: {
-    validar_id() {
+  computed:{
+    validar_Id() {
       return this.usuario.id.length > 0;
     },
-    validar_clave() {
+    validar_Clave() {
       return this.usuario.clave.length > 0;
     },
+  },
+  methods: {
     cargaPagina() {
         let url = config.url_api;
         this.url = url;
@@ -43,7 +47,7 @@ export default {
             localStorage.setItem("id", this.usuario.id);
             console.log("Primera vez: ", data.primera_vez);
             console.log("Rol: ", data.rol);
-        
+            this.$router.push("/principal");
           })
           .catch(error => {
             this.mensaje2 = error.response.data.message;
