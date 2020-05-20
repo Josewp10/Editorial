@@ -1,8 +1,6 @@
 <template>
-  <div class="container">
+  <div >
     <div>
-      <b-container>
-        <br>
         <br>
         <br>
         <b-row> 
@@ -10,10 +8,11 @@
             <br />
             <b-img center src="@/static/images/study.png" width="400" height="400"></b-img>
             <br>
-            <center><h1 style="color:gray">Bienvenido al Módulo de Gestión de la Publicación</h1></center>
+            <center><h1 style="color:gray">Bienvenido al Módulo de</h1></center>
+            <center><h1 style="color:gray">Gestión de la Publicación</h1></center>
           </b-col>
         </b-row>
-      </b-container>
+      
     </div>
   </div>
 </template>

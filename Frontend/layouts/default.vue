@@ -1,32 +1,52 @@
 <template>
   <div>
     <div>
-      <b-navbar toggleable="lg" type="dark" variant="danger">
-        <b-navbar-brand href=".">
-          <b-img left src="@/static/images/logoUdem.png" width="220" height="60"></b-img>
-          <center>
-            <p>Gestión de la Publicación</p>
-          </center>
-        </b-navbar-brand>
+      <b-navbar toggleable type="light" variant="faded">
+        <b-img
+          src="https://redunete.net/wp-content/uploads/2019/02/logo-blanco-Udem-700x300.jpg"
+          fluid
+          alt="Fluid image"
+          width="200px"
+        ></b-img>
 
-        <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+        <div class="title">Gestión de la Publicación</div>
 
-        <b-collapse id="nav-collapse" is-nav>
-          <!-- Right aligned nav items -->
-          <b-navbar-nav class="ml-auto">
-            <b-nav-item-dropdown text="Navegación" right>
-             <b-dropdown-item class="a" href="principal">Principal</b-dropdown-item>
-              <b-dropdown-item class="a" href="tareas">Gestión de Tareas</b-dropdown-item>
-              <b-dropdown-item class="a" href="consultarobras">Consultar Obras</b-dropdown-item>
-              <b-dropdown-item class="a" href="reportes">Reportes</b-dropdown-item>
-               <b-dropdown-item class="a" href="">Salir</b-dropdown-item>
-            </b-nav-item-dropdown>
-          </b-navbar-nav>
-        </b-collapse>
+        <b-navbar-toggle target="navbar-toggle-collapse">
+          <a href="principal">
+            <b-icon icon="house-fill" variant="danger" font-scale="2"></b-icon>
+          </a>
+           <a href="index">
+            <b-icon icon="box-arrow-left" variant="danger" font-scale="2"></b-icon>
+          </a>
+        </b-navbar-toggle>
       </b-navbar>
+
+      <div>
+        <b-navbar toggleable="md" type="dark" variant="danger">
+          <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
+
+          <b-collapse is-nav id="nav_collapse">
+            <b-navbar-nav>
+              <b-nav-item href="tareas">Gestión de Tareas</b-nav-item>
+              <b-nav-item href="consultarobras">Consultar Obras</b-nav-item>
+              <b-nav-item href="reportes">Reportes</b-nav-item>
+            </b-navbar-nav>
+          </b-collapse>
+        </b-navbar>
+      </div>
     </div>
     <nuxt />
   </div>
 </template>
+
+<script>
+import Vue from "vue";
+import { BootstrapVue, BootstrapVueIcons } from "bootstrap-vue";
+Vue.use(BootstrapVue);
+Vue.use(BootstrapVueIcons);
+export default {};
+</script>
+
+<style src="../css/estilos.css" />
 
 

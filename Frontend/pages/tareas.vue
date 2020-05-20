@@ -2,8 +2,10 @@
   <div>
     <br />
     <b-container class="bv-example-row mb-3">
+      <br>
       <b-row cols="2">
         <b-col>
+          <br>
           <b-card title="Gestión de Tareas">
             <b-card-text>A continuación inserte las tareas que ejecutara el módulo de gestión de la publicación :</b-card-text>
 
@@ -64,6 +66,7 @@
           </b-card>
         </b-col>
         <b-col>
+          <br>
           <b-table striped
             responsive
             hover :items="lista_tareas"  v-show="showTable" class="border border-danger text-center">

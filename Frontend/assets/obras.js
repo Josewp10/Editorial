@@ -5,7 +5,7 @@ export default {
         return {
             mensaje: "CRUD De Obra",
             enEdicion: false,
-            nombreObra:"",
+            nombreObra: "",
             seguimiento: {
                 id: "",
                 titulo: "",
@@ -18,7 +18,7 @@ export default {
         this.listarObras();
     },
     computed: {
-      
+
     },
     methods: {
         listarObras() {
@@ -28,10 +28,12 @@ export default {
                 .get("http://127.0.0.1:3001/obra")
                 .then(response => {
                     console.log(response);
+                    
                     arreglo = response.data.info;
 
                     if (this.nombreObra == "") {
                         this.lista_obra = arreglo;
+                     
                         for (let i in this.lista_obra) {
                             this.lista_obra[i].acciones = true;
                         }
@@ -55,7 +57,25 @@ export default {
                     console.log(error);
                 });
         },
-
-        
+        recargar() {
+            axios
+                .get("http://127.0.0.1:3001/obra")
+                .then(response => {
+                    console.log(response);
+                    this.lista_obra = response.data.info;
+                    for (let i in this.lista_obra) {
+                        this.lista_obra[i].acciones = true;
+                    }
+                    this.nombreObra="";
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        },almacenarDatos(item){
+            let object = this.lista_obra[item.index];
+            console.log("errrrreeeeeeeeeeeeeeeeee");
+            sessionStorage.setItem("obra", this.lista_obra);
     }
+    }
+
 };
