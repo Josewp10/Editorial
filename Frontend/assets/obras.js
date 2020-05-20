@@ -57,7 +57,7 @@ export default {
     almacenarDatos(item) {
       let object = this.lista_obra[item.index];
       sessionStorage.setItem("obra", JSON.stringify(object));
-      window.location.assign("/seguimiento");
+      this.$router.push("/seguimiento");
     }
   }
 };

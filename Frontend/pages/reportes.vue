@@ -3,7 +3,8 @@
     <br />
     <center>
       <b-card class="container">
-        <b-button type="submit" variant="danger" @click="generarPdf()">Generar Reporte</b-button>
+        <p>El sello editorial podrá llevar un control de informes de las propuestas presentadas</p>
+        <b-button type="submit" variant="danger" @click="onClick()">Generar Reporte</b-button>
       </b-card>
     </center>
   </div>

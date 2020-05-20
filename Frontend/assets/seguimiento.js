@@ -6,10 +6,8 @@ export default {
       mensaje: "CRUD De   Seguimiento",
       enEdicion: false,
       modalShow: false,
-      indice: null,
       titulo: "",
       idObra: null,
-      obra: null,
       disabled: 0,
       seguimiento: {
         id: "",
@@ -21,9 +19,7 @@ export default {
         acciones: true
       },
       notificacion: {
-        tarea: "",
         tipo: "",
-        estado: "",
         comentario: ""
       },
       lista_seguimiento: [],
@@ -42,7 +38,10 @@ export default {
           disabled: true
         },
         { value: "Con Ajustes", text: "Con Ajustes" },
-        { value: "Versión Maquetada para revisión", text: "Versión Final" },
+        {
+          value: "Versión Maquetada para revisión",
+          text: "Versión Maquetada para revisión"
+        },
         { value: "Versión Final", text: "Versión Final" }
       ]
     };
@@ -50,14 +49,10 @@ export default {
   mounted() {
     this.listarSeguimientos();
     this.listarTareas();
-    this.obra = JSON.parse(sessionStorage.getItem("obra"));
-
+    
     this.disabled = 0;
   },
   computed: {
-    validacionId() {
-      return this.validar_condicion(this.seguimiento.id.length > 0);
-    },
     validacionTarea() {
       return this.validar_condicion(this.seguimiento.id_tarea.length > 0);
     },
@@ -150,6 +145,25 @@ export default {
       } else {
         alert("LLene todos los campos correctamente");
       }
+    },
+    cargarSeguimiento({ item }) {
+      axios
+        .get(`http://127.0.0.1:3001/seguimiento/${item.id}`)
+        .then(response => {
+          var array = response.data.info;
+          this.disabled = 1;
+          this.enEdicion = true;
+          this.seguimiento.id = array[0].id;
+          this.seguimiento.id_tarea = array[0].id_tarea;
+          this.seguimiento.fecha = array[0].fecha;
+          this.seguimiento.comentario = array[0].comentario;
+          this.seguimiento.estado = array[0].estado;
+          this.seguimiento.archivo = array[0].archivo;
+          this.seguimiento.acciones = true;
+        })
+        .catch(error => {
+          console.log(error);
+        });
     },
     eliminarSeguimiento({ item }) {
       axios

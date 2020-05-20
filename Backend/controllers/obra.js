@@ -76,7 +76,7 @@ let consultarTareas = async () => {
 
 let consultarObras = async () => {
   let _servicio = new ServicioPg();
-  let sql = `SELECT pu_propuestas_publicaciones.id,titulo,
+  let sql = `SELECT pu_propuestas_publicaciones.id AS idObra,titulo,
     CONCAT(nombre,' ',apellidos)AS Autor, facultad,tipo_publicacion, area 
                 FROM public.pu_autores_publicaciones
                 INNER JOIN public.acc_usuarios on public.pu_autores_publicaciones.id_autor = public.acc_usuarios.id
@@ -89,7 +89,7 @@ let consultarObras = async () => {
 
 let consultarObra = async (id) => {
   let _servicio = new ServicioPg();
-  let sql = `SELECT pu_propuestas_publicaciones.id,titulo,CONCAT(nombre,' ',apellidos)AS Autor, facultad,tipo_publicacion, area 
+  let sql = `SELECT pu_propuestas_publicaciones.id AS idObra,titulo,CONCAT(nombre,' ',apellidos)AS Autor, facultad,tipo_publicacion, area 
     FROM public.pu_autores_publicaciones
     INNER JOIN public.acc_usuarios on public.pu_autores_publicaciones.id_autor = public.acc_usuarios.id
     INNER JOIN public.pu_propuestas_publicaciones on public.pu_autores_publicaciones.id_publicacion=public.pu_propuestas_publicaciones.id 

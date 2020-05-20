@@ -10,10 +10,10 @@ app.use(cors());
 app.get("/", (req, res)=>{
   res.send('Bienvenido al proyecto de gestión de tareas')
 })
-
+const vs = "/api/v1/";
 ///Importarlas rutas
 const ruta_autenticacion= require("./routes/autenticacion")
-app.use(ruta_autenticacion);
+app.use(vs, ruta_autenticacion);
 
 const ruta_reporte = require("./routes/reportes")
 app.use(ruta_reporte);
