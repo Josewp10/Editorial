@@ -38,5 +38,4 @@ router.post('/enviarCorreo/notificacion', (req,res)=>{
         
       }
 });
-
 module.exports = router;

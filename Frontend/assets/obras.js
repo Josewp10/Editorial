@@ -56,26 +56,14 @@ export default {
                 .catch(error => {
                     console.log(error);
                 });
-        },
-        recargar() {
-            axios
-                .get("http://127.0.0.1:3001/obra")
-                .then(response => {
-                    console.log(response);
-                    this.lista_obra = response.data.info;
-                    for (let i in this.lista_obra) {
-                        this.lista_obra[i].acciones = true;
-                    }
-                    this.nombreObra="";
-                })
-                .catch(error => {
-                    console.log(error);
-                });
         },almacenarDatos(item){
-            let object = this.lista_obra[item.index];
-            console.log("errrrreeeeeeeeeeeeeeeeee");
-            sessionStorage.setItem("obra", this.lista_obra);
-    }
+                let object = this.lista_obra[item.index];
+                console.log("errrrreeeeeeeeeeeeeeeeee");
+                sessionStorage.setItem("obra", this.lista_obra);
+        }
+
+
+        
     }
 
 };

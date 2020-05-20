@@ -5,9 +5,11 @@ export default {
   data() {
     return {
       estado_id: null,
+      estado_correo: null,
       estado_clave: null,
       url: "",
       message: "INICIAR SESIÓN",
+      mensaje2: "",
       usuario: {
         id: "",
         clave: "",

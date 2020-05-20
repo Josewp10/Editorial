@@ -1,6 +1,5 @@
 //Importar express
 const express = require('express')
-const router = express.Router();
 const cors = require('cors');
 //Inicializar librería
 const app = express()
@@ -14,7 +13,7 @@ app.get("/", (req, res)=>{
 
 ///Importarlas rutas
 const ruta_autenticacion= require("./routes/autenticacion")
-//app.use(ruta_autenticacion);
+app.use(ruta_autenticacion);
 
 const ruta_reporte = require("./routes/reportes")
 app.use(ruta_reporte);
@@ -28,8 +27,10 @@ app.use(ruta_seguimiento);
 const ruta_tareas = require("./routes/tareas")
 app.use(ruta_tareas);
 
+
 const ruta_envioCorreo = require("./routes/envioCorreo")
 app.use(ruta_envioCorreo);
+
 
 //Puerto
 const port = 3001
