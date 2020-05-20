@@ -20,7 +20,7 @@
             responsive
             hover :items="lista_obra" class="border border-danger text-center">
             <template v-slot:cell(acciones)="row">
-              <b-button href="/seguimiento" size="sm" class="mr-2" variant="link"><b-img center="" @click="listarObras(row)" src="@/static/images/revisar.png" width="40" height="40"></b-img>Revisar</b-button>
+              <b-button href="/seguimiento" size="sm" class="mr-2" variant="link"><b-img center="" @click="almacenarDatos(row)" src="@/static/images/revisar.png" width="40" height="40"></b-img>Revisar</b-button>
             </template>
           </b-table>
         </b-col>

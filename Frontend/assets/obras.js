@@ -16,6 +16,7 @@ export default {
     },
     created() {
         this.listarObras();
+        almacenarDatos();
     },
     computed: {
       
@@ -35,6 +36,11 @@ export default {
                         for (let i in this.lista_obra) {
                             this.lista_obra[i].acciones = true;
                         }
+<<<<<<< HEAD
+                        
+                    }else{
+                        this.lista_obra = arreglo.filter(e =>{return e.indexOf(this.nombreObra)> -1})
+=======
 
                     } else {
                         for (let i in arreglo) {
@@ -46,6 +52,7 @@ export default {
                             }
                         }
 
+>>>>>>> cd3fe2336ac9e4e622732ca814f0b0e2f6038cd4
                         for (let i in this.lista_obra) {
                             this.lista_obra[i].acciones = true;
                         }
@@ -55,6 +62,16 @@ export default {
                     console.log(error);
                 });
         },
+<<<<<<< HEAD
+        almacenarDatos(item){
+            if(this.lista_obra){
+                sessionStorage.setItem('obra', JSON.stringify(this.lista_obra));
+                console.log(sessionStorage.getItem('obra'));
+            }
+        }
+=======
+>>>>>>> cd3fe2336ac9e4e622732ca814f0b0e2f6038cd4
+
 
         
     }
