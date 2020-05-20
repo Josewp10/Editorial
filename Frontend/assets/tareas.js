@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from "axios";
 
 export default {
   data() {
@@ -14,7 +14,7 @@ export default {
         modulo: "",
         acciones: true
       },
-      lista_tareas: [],
+      lista_tareas: []
     };
   },
   created() {
@@ -22,13 +22,13 @@ export default {
   },
   computed: {
     validacionId() {
-      return this.validar_condicion(this.pu_tarea.id.length > 0)
+      return this.validar_condicion(this.pu_tarea.id.length > 0);
     },
     validacionNombre() {
-      return this.validar_condicion(this.pu_tarea.nombre.length > 0)
+      return this.validar_condicion(this.pu_tarea.nombre.length > 0);
     },
     validaciondescripcion() {
-      return this.validar_condicion(this.pu_tarea.descripcion.length > 0)
+      return this.validar_condicion(this.pu_tarea.descripcion.length > 0);
     }
   },
   methods: {
@@ -50,7 +50,7 @@ export default {
           for (let i in this.lista_tareas) {
             this.lista_tareas[i].acciones = true;
           }
-          console.log(lista_tareas);
+          console.log(this.lista_tareas);
           //this.enEdicion = true;
         })
         .catch(error => {
@@ -89,7 +89,6 @@ export default {
       axios
         .delete(`http://127.0.0.1:3001/tareas/${item.id}`)
         .then(response => {
-
           let posicion = this.lista_tareas.findIndex(
             lista_tareas => lista_tareas.id == item.id
           );
@@ -97,7 +96,6 @@ export default {
 
           console.log(response.data.info);
           console.log(item.id);
-
         })
         .catch(error => {
           console.log(error);
@@ -119,7 +117,7 @@ export default {
           this.pu_tarea.modulo = array[0].modulo;
           this.pu_tarea.acciones = true;
         })
-        .catch((error) => {
+        .catch(error => {
           console.log(error);
         });
     },
@@ -130,29 +128,30 @@ export default {
     actualizarTarea() {
       if (this.validacion == true) {
         axios
-          .put(`http://127.0.0.1:3001/tareas/${this.pu_tarea.id}`, this.pu_tarea)
-          .then((response) => {
+          .put(
+            `http://127.0.0.1:3001/tareas/${this.pu_tarea.id}`,
+            this.pu_tarea
+          )
+          .then(response => {
             let posicion = this.lista_tareas.findIndex(
-              (pu_tarea) => pu_tarea.id == this.pu_tarea.id
+              pu_tarea => pu_tarea.id == this.pu_tarea.id
             );
             this.lista_tareas.splice(posicion, 1, this.pu_tarea);
             this.enEdicion = false;
             this.pu_tarea = {
-              id:"",
+              id: "",
               nombre: "",
               descripcion: "",
               modulo: "",
               acciones: true
             };
           })
-          .catch((error) => {
+          .catch(error => {
             console.log(error);
           });
       } else {
         alert("LLene todos los campos correctamente");
       }
-
-    },
-
+    }
   }
 };
