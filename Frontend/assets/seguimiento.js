@@ -5,9 +5,9 @@ export default {
     return {
       mensaje: "CRUD De   Seguimiento",
       enEdicion: false,
-      modalShow: false,
+      modal: true,
       titulo: "",
-      idObra: null,
+      obra: null,
       disabled: 0,
       seguimiento: {
         id: "",
@@ -47,9 +47,10 @@ export default {
     };
   },
   mounted() {
+    this.obra = JSON.parse(sessionStorage.getItem("obra"));
+    this.titulo = this.obra.titulo;
     this.listarSeguimientos();
     this.listarTareas();
-    
     this.disabled = 0;
   },
   computed: {
@@ -83,12 +84,14 @@ export default {
       this.titulo = this.$route.query.titulo;
     },
     listarSeguimientos() {
+      //let id = this.obra.idobra;
+      console.log("ID OBRA: " + this.obra.idobra);
+      console.log("OBRA: " + this.obra.titulo);
       axios
-        .get(`http://127.0.0.1:3001/seguimiento/${0}`)
+        .get(`http://127.0.0.1:3001/seguimiento/${this.obra.idobra}`)
         .then(response => {
           console.log(response);
 
-          console.log("ID OBRA: " + this.obra.titulo);
           this.lista_seguimiento = response.data.info;
           for (let i in this.lista_seguimiento) {
             this.lista_seguimiento[i].acciones = true;
@@ -232,7 +235,14 @@ export default {
       }
     },
     enviarCorreo() {
-      axios
+      this.notificacion = {
+        tarea: this.obra.titulo,
+        tipo: "",
+        estado: "",
+        comentario: ""
+      };
+      console.log("TITULO DESDE CORREO" + this.notificacion.tarea);
+      /*axios
         .post(
           `http://127.0.0.1:3001/enviarCorreo/notificacion`,
           this.notificacion
@@ -249,12 +259,14 @@ export default {
         })
         .catch(error => {
           console.log(error);
-        });
+        });*/
+      this.modal = true;
     },
     showModal() {
       this.$root.$emit("bv::show::modal", "modal-1", "#btnShow");
     },
     almacenarIndice(row) {
+      this.modal = false;
       this.indice = row.index;
       console.log("INDICE: " + this.indice);
     }

@@ -4,9 +4,10 @@
     <b-container class="bv-example-row mb-3">
       <b-row>
         <b-col>
-          <b-card title="Gestión de seguimiento a la Propuesta: ">
+          <!--FORMULARIO PARA CREAR SEGUIMIENTO-->
+          <b-card title="Gestión de seguimiento a la Propuesta: " v-if="modal">
             <b>
-              <label for>aqui va la propuesta</label>
+              <label>{{titulo}}</label>
             </b>
             <b-card-text>El sello editorial realizara un seguimiento de las propuestas aprobadas:</b-card-text>
 
@@ -74,7 +75,45 @@
               <b-button @click="actualizarSeguimiento()" variant="primary" v-else>Actualizar</b-button>
             </b-form>
           </b-card>
+          <!--FORMULARIO DE NOTIFICACIÓN-->
+          <b-card title="Gestión de seguimiento a la Propuesta: " v-if="!modal">
+            <b-form-group label-class="font-weight-bold pt-0" class="mb-1">
+              <b-form-group>
+                <b-img left="1px" src="@/static/images/revision.png" width="80" height="80"></b-img>
+                <b-img right src="@/static/images/selloeditorial.png" width="80" height="80"></b-img>
+              </b-form-group>
+            </b-form-group>
+            <b-form-group
+              label-cols-sm="3"
+              label="Tipo de Notificación:"
+              label-align-sm="right"
+              label-for="tipo"
+            >
+              <b-form-select :options="opciones_notificacion" v-model="notificacion.tipo"></b-form-select>
+            </b-form-group>
+            <b-form-group
+              label-cols-sm="3"
+              label="Comentario:"
+              label-align-sm="right"
+              label-for="comentario"
+            >
+              <b-form-textarea
+                id="textarea-large"
+                v-model="notificacion.comentario"
+                size="lg"
+                placeholder="Comentario"
+              ></b-form-textarea>
+              <br />
+              <b-button
+                size="40"
+                class="mr-4"
+                variant="warning"
+                @click="enviarCorreo()"
+              >Enviar Correo</b-button>
+            </b-form-group>
+          </b-card>
         </b-col>
+        <!--COLUMNA DE SEGUIMIENTOS-->
         <b-col>
           <b-table
             striped
@@ -105,48 +144,7 @@
               <br />
               <br />
               <div>
-                <b-button
-                  v-b-modal.modal-1
-                  variant="outline-danger"
-                  @click="almacenarIndice(row)"
-                >Enviar Notificación</b-button>
-
-                <b-modal id="modal-1" title="Notificar a Autor">
-                  <b-form-group label-class="font-weight-bold pt-0" class="mb-1">
-                    <b-form-group>
-                      <b-img left="1px" src="@/static/images/revision.png" width="80" height="80"></b-img>
-                      <b-img right src="@/static/images/selloeditorial.png" width="80" height="80"></b-img>
-                    </b-form-group>
-                  </b-form-group>
-                  <b-form-group
-                    label-cols-sm="3"
-                    label="Tipo de Notificación:"
-                    label-align-sm="right"
-                    label-for="tipo"
-                  >
-                    <b-form-select :options="opciones_notificacion" v-model="notificacion.tipo"></b-form-select>
-                  </b-form-group>
-                  <b-form-group
-                    label-cols-sm="3"
-                    label="Comentario:"
-                    label-align-sm="right"
-                    label-for="comentario"
-                  >
-                    <b-form-textarea
-                      id="textarea-large"
-                      v-model="notificacion.comentario"
-                      size="lg"
-                      placeholder="Comentario"
-                    ></b-form-textarea>
-                    <br />
-                    <b-button
-                      size="40"
-                      class="mr-4"
-                      variant="warning"
-                      @click="enviarCorreo()"
-                    >Enviar Correo</b-button>
-                  </b-form-group>
-                </b-modal>
+                <b-button variant="outline-danger" @click="almacenarIndice(row)">Enviar Notificación</b-button>
               </div>
             </template>
           </b-table>
