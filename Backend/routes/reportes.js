@@ -17,7 +17,7 @@ router.get("/pdf/publicaciones", async (req, res) => {
     let stream = new PassThrough();
     stream.end(bufferPDF);
     stream.pipe(res);
-    // return res.send("OK");
+  
   } catch (error) {
     console.log(error);
     return res.status(500).send(error);

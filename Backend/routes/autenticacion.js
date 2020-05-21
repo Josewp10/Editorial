@@ -57,7 +57,7 @@ router.use((req, res, next) => {
   router.get("/verificar", (req, res) => {
     try {
       let token = req.headers.token;
-      let verificacion = _controlador.verificarToken(token);
+      let verificar = _controlador.verificarToken(token);
       next();
     }catch (error) {
     res.status(401).send({

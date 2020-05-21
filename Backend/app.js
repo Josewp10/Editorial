@@ -18,6 +18,9 @@ app.use(vs, ruta_autenticacion);
 const ruta_reporte = require("./routes/reportes")
 app.use(ruta_reporte);
 
+const ruta_reporteConsultado = require("./routes/reporteConsulta")
+app.use(ruta_reporteConsultado);
+
 const ruta_obra = require("./routes/obra")
 app.use(ruta_obra);
 
@@ -26,7 +29,6 @@ app.use(ruta_seguimiento);
 
 const ruta_tareas = require("./routes/tareas")
 app.use(ruta_tareas);
-
 
 const ruta_envioCorreo = require("./routes/envioCorreo")
 app.use(ruta_envioCorreo);

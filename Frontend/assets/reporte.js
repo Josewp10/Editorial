@@ -14,6 +14,7 @@ export default {
     },
     methods: {
         onClick() {
+            alert("Señor Usuario su Pdf ya se esta generando, por favor espere unos segundos");
             axios({
                   url: 'http://localhost:3001/pdf/publicaciones',
                   method: 'GET',

@@ -35,7 +35,7 @@
               </b-form-group>
 
               <b-form-group label="Descripción" label-for="descripcion">
-                <b-form-input
+                <b-form-textarea
                   class="form-control"
                   v-model="pu_tarea.descripcion"
                   id="descripcion"
@@ -46,13 +46,7 @@
               </b-form-group>
 
               <b-form-group label="Módulo" label-for="modulo">
-                <b-form-input
-                  class="form-control"
-                  v-model="pu_tarea.modulo"
-                  id="modulo"
-                  required
-                  placeholder="Ingrese Módulo al que pertenece la tarea"
-                />
+                <b-form-select v-model="pu_tarea.modulo" :options="opciones_modulos" required></b-form-select>
               </b-form-group>
 
               <b-button type="submit" variant="danger" v-if="!enEdicion">Crear Tarea</b-button>

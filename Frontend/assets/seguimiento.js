@@ -6,12 +6,14 @@ export default {
       mensaje: "CRUD De   Seguimiento",
       enEdicion: false,
       modal: true,
+      
       titulo: "",
       obra: null,
       indice: 0,
       disabled: 0,
       seguimiento: {
         id: "",
+        id_propuesta:"",
         id_tarea: "",
         fecha: "",
         estado: "",
@@ -51,6 +53,7 @@ export default {
   mounted() {
     this.obra = JSON.parse(sessionStorage.getItem("obra"));
     this.titulo = this.obra.titulo;
+    this.seguimiento.id_propuesta = this.obra.idobra;
     this.infoAutor();
     this.listarSeguimientos();
     this.listarTareas();
@@ -131,7 +134,6 @@ export default {
           .post("http://127.0.0.1:3001/seguimiento", this.seguimiento)
           .then(response => {
             console.log(response);
-
             this.lista_seguimiento.push(response.data);
             this.disabled = 0;
             this.seguimiento = {
@@ -147,6 +149,8 @@ export default {
               path: "seguimiento",
               query: { titulo: response.data["titulo"] }
             });
+            location.reload(true);
+            alert("Seguimiento de la Obra Creado");
           })
           .catch(error => {
             console.log(error.response);
@@ -154,26 +158,6 @@ export default {
       } else {
         alert("LLene todos los campos correctamente");
       }
-    },
-
-    cargarSeguimiento({ item }) {
-      axios
-        .get(`http://127.0.0.1:3001/seguimiento/${item.id}`)
-        .then(response => {
-          var array = response.data.info;
-          this.disabled = 1;
-          this.enEdicion = true;
-          this.seguimiento.id = array[0].id;
-          this.seguimiento.id_tarea = array[0].id_tarea;
-          this.seguimiento.fecha = array[0].fecha;
-          this.seguimiento.comentario = array[0].comentario;
-          this.seguimiento.estado = array[0].estado;
-          this.seguimiento.archivo = array[0].archivo;
-          this.seguimiento.acciones = true;
-        })
-        .catch(error => {
-          console.log(error);
-        });
     },
     //ELIMINA SEGUIMIENTOS DE LA BASE DE DATOS
     eliminarSeguimiento({ item }) {
@@ -187,6 +171,7 @@ export default {
 
           console.log(response.data.info);
           console.log(item.id);
+          alert("Seguimiento Eliminado");
         })
         .catch(error => {
           console.log(error);
@@ -195,7 +180,7 @@ export default {
     //CREA UN NUEVO SEGUIMIENTO EN LA BASE DE DATOS
     cargarSeguimiento({ item }) {
       axios
-        .get(`http://127.0.0.1:3001/seguimiento/${item.id}`)
+        .get(`http://127.0.0.1:3001/seguimiento/seg/${item.id}`)
         .then(response => {
           var array = response.data.info;
           this.disabled = 1;
@@ -205,8 +190,8 @@ export default {
           this.seguimiento.fecha = array[0].fecha;
           this.seguimiento.comentario = array[0].comentario;
           this.seguimiento.estado = array[0].estado;
-          (this.seguimiento.archivo = array[0].archivo),
-            (this.seguimiento.acciones = true);
+          this.seguimiento.archivo = array[0].archivo;
+          this.seguimiento.acciones = true;
         })
         .catch(error => {
           console.log(error);
@@ -236,6 +221,8 @@ export default {
               archivo: "",
               acciones: true
             };
+            location.reload(true);
+            alert("Seguimiento Actualizado");
           })
           .catch(error => {
             console.log(error);

@@ -5,6 +5,7 @@
       <b-row>
         <b-col>
           <!--FORMULARIO PARA CREAR SEGUIMIENTO-->
+          <br>
           <b-card title="Gestión de seguimiento a la Propuesta: " v-if="modal">
             <b>
               <label>{{titulo}}</label>
@@ -19,6 +20,19 @@
                   required
                   v-model="seguimiento.id"
                   placeholder="Ingrese Id Seguimiento"
+                  id="id"
+                />
+                <b-form-invalid-feedback :state="validacionId"></b-form-invalid-feedback>
+              </b-form-group>
+
+              <b-form-group label="Id Propuesta" label-for="id">
+                <b-form-input
+                  class="form-control"
+                  type="number"
+                  required
+                  v-model="seguimiento.id_propuesta"
+                  :disabled = true
+                  placeholder="Id Propuesta"
                   id="id"
                 />
                 <b-form-invalid-feedback :state="validacionId"></b-form-invalid-feedback>
@@ -76,6 +90,7 @@
             </b-form>
           </b-card>
           <!--FORMULARIO DE NOTIFICACIÓN-->
+          <br>
           <b-card title="Gestión de seguimiento a la Propuesta: " v-if="!modal">
             <b-form-group label-class="font-weight-bold pt-0" class="mb-1">
               <b-form-group>
@@ -115,6 +130,7 @@
         </b-col>
         <!--COLUMNA DE SEGUIMIENTOS-->
         <b-col>
+          <br>
           <b-table
             striped
             responsive
