@@ -128,3 +128,4 @@ router.put("/seguimiento/:id", (req, res) => {
 //Exportación del router
 
 module.exports = router;
+module.exports = router;
