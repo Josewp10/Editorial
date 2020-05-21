@@ -122,6 +122,7 @@ let editarSeguimiento = async (seguimiento, id) => {
 module.exports = {
   validarSeguimiento,
   guardarSeguimiento,
+  consultarSeguimiento,
   consultarSeguimientos,
   eliminarSeguimiento,
   editarSeguimiento,

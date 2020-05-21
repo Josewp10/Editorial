@@ -14,7 +14,13 @@ export default {
         modulo: "",
         acciones: true
       },
-      lista_tareas: []
+      lista_tareas: [],
+      opciones_modulos: [
+        { value: null, text: "Seleccione el Modulo al que pertenece la tarea", disabled: true },
+        { value: "01", text: "01 - Gestión de propuestas de publicación" },
+        { value: "02", text: "02 - Gestión Evaluación" },
+        { value: "03", text: "03 - Gestión Publicación" },
+      ],
     };
   },
   created() {
@@ -74,6 +80,8 @@ export default {
               modulo: "",
               acciones: true
             };
+            location.reload();
+            alert("Tarea Creada Correctamente");
           })
           .catch(error => {
             console.log(error);
@@ -96,6 +104,7 @@ export default {
 
           console.log(response.data.info);
           console.log(item.id);
+          alert("Tarea Eliminada");
         })
         .catch(error => {
           console.log(error);
@@ -145,6 +154,8 @@ export default {
               modulo: "",
               acciones: true
             };
+            alert("Tarea Actualizada Correctamente");
+            location.reload();
           })
           .catch(error => {
             console.log(error);

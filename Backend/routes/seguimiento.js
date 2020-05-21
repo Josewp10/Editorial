@@ -3,6 +3,7 @@ const router = express.Router();
 const {
   validarSeguimiento,
   guardarSeguimiento,
+  consultarSeguimiento,
   consultarSeguimientos,
   consultarPorObra,
   eliminarSeguimiento,
@@ -30,6 +31,22 @@ router.get("/seguimiento", async (req, res) => {
 router.get("/seguimiento/:id", async (req, res) => {
   let id = req.params.id;
   consultarPorObra(id)
+    .then((seguimientoDB) => {
+      let seguimiento = seguimientoDB.rows;
+      res.send({
+        ok: true,
+        info: seguimiento,
+        mensaje: "Seguimiento consultado",
+      });
+    })
+    .catch((error) => {
+      res.send(error);
+    });
+});
+
+router.get("/seguimiento/seg/:id", async (req, res) => {
+  let id = req.params.id;
+  consultarSeguimiento(id)
     .then((seguimientoDB) => {
       let seguimiento = seguimientoDB.rows;
       res.send({
